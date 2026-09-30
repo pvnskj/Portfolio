@@ -3,7 +3,7 @@ import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
   site: 'https://pvnskj.github.io',
-  base: '/Test12',
+  base: '/Portfolio',
   trailingSlash: 'always',
   compressHTML: true,
   integrations: [
