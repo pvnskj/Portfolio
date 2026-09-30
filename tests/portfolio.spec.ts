@@ -87,7 +87,7 @@ test('focus areas and evidence expand inline using keyboard and pointer', async 
     await expect(page.locator('#evidence')).toHaveAttribute('open', '');
     await expect(second).not.toHaveAttribute('open', '');
     await expect(page.locator('.scan-evidence-row')).toHaveCount(4);
-    expect(page.url()).toContain(project.path.replace('./', '/Test12/'));
+    expect(page.url()).toContain(project.path.replace('./', '/Portfolio/'));
     expect(page.url()).toContain('#evidence');
     const text = (await page.locator('.scan-workspace').innerText()).toLowerCase();
     for (const term of prohibitedTerms) expect(text, project.title).not.toContain(term);

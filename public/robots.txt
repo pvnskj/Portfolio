@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://pvnskj.github.io/Test12/sitemap-index.xml
+Sitemap: https://pvnskj.github.io/Portfolio/sitemap-index.xml
