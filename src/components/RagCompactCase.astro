@@ -5,30 +5,39 @@ interface Props { project: Project; }
 const { project } = Astro.props;
 
 const story = {
-  problem: 'A development request could spend almost an entire two-week sprint in analysis before development even started: about 6 days with business analysts, then another 4 days with developers for technical impact analysis.',
-  goal: 'Give analysts one place to ask a feature question and receive a grounded business + technical impact analysis across the systems and documents they previously had to search manually.',
-  sources: ['11GB+ engineering knowledge', '558+ projects', 'Confluence', 'Shared Drive', 'Sheets & PDFs', 'Meeting transcripts'],
+  problem: 'A typical feature request could spend almost an entire two-week sprint in analysis before development started: about 6 days with business analysts, then another 4 days with developers for technical analysis.',
+  goal: 'Create one grounded analysis workflow that brings business context, code, documentation, and historical knowledge together so teams can understand impact faster without removing human validation.',
   ownership: [
-    ['Built end to end', 'I personally designed and built the working analysis agent.'],
-    ['Unified knowledge', 'Connected fragmented business, code, documentation, and meeting context into one analysis workflow.'],
-    ['Grounded answers', 'Made the agent return evidence, ask follow-up questions, and surface gaps instead of guessing.'],
-    ['Team adoption', 'Put the agent into the analysis workflow so analysts validate the output and turn it into development stories.'],
+    ['Product + build', 'I identified the workflow problem, designed the solution, and personally built the working agent.'],
+    ['Knowledge strategy', 'I brought engineering repositories, documentation, shared files, and meeting context into one searchable analysis layer.'],
+    ['Analysis experience', 'I designed the agent to investigate, ask follow-up questions, surface dependencies, and return evidence instead of a quick generic answer.'],
+    ['Adoption + measurement', 'I introduced it into the analyst workflow and measured success by how quickly work moved from analysis toward development.'],
   ],
-  before: [
-    ['~6 days', 'Business analysis', 'Research feature impact and gaps across business flows.'],
-    ['~4 days', 'Technical analysis', 'Developers inspect code, validations, integrations, and workflow changes.'],
+  priorities: [
+    ['01', 'Solve the biggest delay', 'Focus first on the analysis handoff consuming most of the sprint.'],
+    ['02', 'Trust before speed', 'Prioritize grounded evidence and clarification over instant responses.'],
+    ['03', 'Unify before expanding', 'Connect the highest-value knowledge sources before adding broader assistant features.'],
   ],
-  after: [
-    ['~2 hrs', 'Business impact', 'Agent gathers and connects the business context.'],
-    ['~4 hrs', 'Technical impact', 'Agent traces code and implementation impacts for developer review.'],
-    ['1–2 days', 'Story moves forward', 'Human validation and story creation remain in the loop.'],
+  process: ['Feature intake', 'Agent investigates', 'Clarify gaps', 'Human validation', 'Stories to development'],
+  outcomes: [
+    ['~10 days → ~6 hrs', 'analysis work', 'Business + technical analysis combined'],
+    ['1–2 days', 'story movement', 'Includes human validation and story creation'],
+    ['11GB+', 'knowledge corpus', 'Engineering and business knowledge available to the agent'],
+    ['558+', 'projects searchable', 'Cross-project impact analysis coverage'],
   ],
-  process: ['Ask the feature question', 'Search all sources', 'Clarify gaps', 'Analyst validates', 'Create stories'],
+  benefits: [
+    '~12 analysts supported',
+    'Business + technical impact together',
+    'Evidence-backed answers',
+    'Follow-up questions when context is missing',
+    'Human validation retained',
+    'Used in the analysis workflow',
+  ],
   decisions: [
     ['Accuracy over instant answers', 'The agent can take longer and ask questions when more context is needed.'],
-    ['One analysis, not two silos', 'Business and technical impact are assembled together before handoff.'],
+    ['One analysis, not two silos', 'Business and technical impact are assembled together before the developer handoff.'],
     ['Human validation stays', 'Analysts verify the evidence before the output becomes delivery scope.'],
-    ['Measure workflow movement', 'Success is how quickly a request moves from analysis to development, not chatbot response speed.'],
+    ['Measure workflow movement', 'Success is how quickly a request moves toward development, not chatbot response speed.'],
   ],
 };
 ---
@@ -47,34 +56,44 @@ const story = {
     </article>
   </div>
 
-  <section class="eom-compact-section" aria-labelledby="rag-before-after">
-    <div class="eom-section-head"><span>Impact</span><h2 id="rag-before-after">From ~10 days of analysis to ~6 hours</h2></div>
-    <div class="rag-comparison">
-      <div><span class="rag-comparison-label">Before</span>{story.before.map(([value,title,text]) => <article><strong>{value}</strong><h3>{title}</h3><p>{text}</p></article>)}</div>
-      <div><span class="rag-comparison-label">With the agent</span>{story.after.map(([value,title,text]) => <article><strong>{value}</strong><h3>{title}</h3><p>{text}</p></article>)}</div>
-    </div>
-  </section>
-
   <section class="eom-compact-section" aria-labelledby="rag-owned">
-    <div class="eom-section-head"><span>My ownership</span><h2 id="rag-owned">What I built and owned</h2></div>
+    <div class="eom-section-head"><span>My role</span><h2 id="rag-owned">What I owned</h2></div>
     <div class="eom-card-row">
       {story.ownership.map(([title,text]) => <article><h3>{title}</h3><p>{text}</p></article>)}
     </div>
   </section>
 
-  <section class="eom-compact-section" aria-labelledby="rag-knowledge">
-    <div class="eom-section-head"><span>Knowledge</span><h2 id="rag-knowledge">One analysis layer across fragmented sources</h2></div>
-    <div class="rag-source-strip">{story.sources.map((source) => <span>{source}</span>)}</div>
+  <section class="eom-compact-section" aria-labelledby="rag-priorities">
+    <div class="eom-section-head"><span>Prioritization</span><h2 id="rag-priorities">How I decided what came first</h2></div>
+    <div class="eom-priority-row">
+      {story.priorities.map(([num,title,text]) => <article><b>{num}</b><div><h3>{title}</h3><p>{text}</p></div></article>)}
+    </div>
+    <div class="eom-frameworks" aria-label="Frameworks used">
+      {project.prioritization.map((item) => <span>{item.title}</span>)}
+    </div>
   </section>
 
-  <section class="eom-compact-section" aria-labelledby="rag-process">
-    <div class="eom-section-head"><span>Workflow</span><h2 id="rag-process">How a request moves now</h2></div>
-    <ol class="rag-process">{story.process.map((step,index) => <li><span>{String(index+1).padStart(2,'0')}</span><strong>{step}</strong></li>)}</ol>
+  <section class="eom-compact-section eom-process-section" aria-labelledby="rag-process">
+    <div class="eom-section-head"><span>Process</span><h2 id="rag-process">From intake to development readiness</h2></div>
+    <ol class="rag-process">
+      {story.process.map((step,index) => <li><span>{String(index+1).padStart(2,'0')}</span><strong>{step}</strong></li>)}
+    </ol>
+  </section>
+
+  <section class="eom-compact-section" aria-labelledby="rag-result">
+    <div class="eom-section-head"><span>Result</span><h2 id="rag-result">What changed with the agent</h2></div>
+    <div class="eom-outcome-row">
+      {story.outcomes.map(([value,label,detail]) => <article><strong>{value}</strong><h3>{label}</h3><p>{detail}</p></article>)}
+    </div>
+    <div class="eom-benefit-strip" aria-label="Workflow benefits">
+      {story.benefits.map((item) => <span>{item}</span>)}
+    </div>
   </section>
 
   <section class="eom-compact-section" aria-labelledby="rag-decisions">
-    <div class="eom-section-head"><span>Product decisions</span><h2 id="rag-decisions">What made the agent useful</h2></div>
-    <div class="eom-decision-carousel">{story.decisions.map(([title,text]) => <article><h3>{title}</h3><p>{text}</p></article>)}</div>
-    <div class="eom-frameworks" aria-label="Prioritization lenses">{project.prioritization.map((item) => <span>{item.title}</span>)}</div>
+    <div class="eom-section-head"><span>Product calls</span><h2 id="rag-decisions">Four decisions that shaped the agent</h2></div>
+    <div class="eom-decision-carousel">
+      {story.decisions.map(([title,text]) => <article><h3>{title}</h3><p>{text}</p></article>)}
+    </div>
   </section>
 </section>
