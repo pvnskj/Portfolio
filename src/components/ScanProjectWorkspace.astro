@@ -15,7 +15,7 @@ const isEom = project.slug === 'enterprise-order-management';
 
 const eomCompact = {
   problem: 'Our vendor orchestration product charged us per order, so cost grew directly with volume. We chose to build our own platform to remove that dependency, control the roadmap, and introduce intelligent orchestration.',
-  goal: 'Build an in-house orchestration platform that lowers dependency cost, gives us control of change, and makes new products easier to launch.',
+  goal: 'Build an in-house orchestration platform using a DAG and workers so each order triggers only the tasks it actually needs, reducing vendor dependency while improving control, resilience, and scale.',
   ownership: [
     ['Business case', 'Frame the build-vs-buy opportunity around recurring order cost, control, and scale.'],
     ['Product direction', 'Define the target experience and roadmap for intelligent orchestration.'],
@@ -27,12 +27,26 @@ const eomCompact = {
     ['02', 'Remove the dependency', 'Build the reusable orchestration foundation before adding more variation.'],
     ['03', 'Scale what works', 'Move product change toward configuration and measurable operational control.'],
   ],
-  process: ['Business case', 'Prioritize scope', 'Pilot the model', 'Migrate & measure'],
+  process: ['Business case', 'Prioritize low-risk volume', 'Pilot DAG + workers', 'Migrate & measure'],
   decisions: [
     ['Build vs. buy', 'Own the orchestration capability instead of paying indefinitely per order.'],
-    ['Reusable over custom', 'Design one model that can support changing products without rebuilding every flow.'],
-    ['Migrate safely', 'Preserve current outcomes first; improve the operating model underneath them.'],
-    ['Evidence over claims', 'Use measured mapping improvement separately from future scale targets.'],
+    ['Start where volume was high', 'Prove the new model on an order type with high throughput but lower business impact before expanding further.'],
+    ['Run only what is needed', 'Use the DAG to resolve dependencies and workers to execute only the tasks required for that order.'],
+    ['Design for recovery', 'Support validation, SLA control, retry, and reprocessing so failures do not force the entire order to restart.'],
+  ],
+  outcomes: [
+    ['20%', 'faster logic mapping', 'Measured proof-of-concept improvement'],
+    ['18', 'service intents', 'Existing behavior protected during migration'],
+    ['19+', 'teams aligned', 'Cross-system delivery and migration coordination'],
+    ['75K/day', 'target capacity', 'Projected scale for the event-driven model'],
+  ],
+  benefits: [
+    'Only required tasks invoked',
+    'Fewer unnecessary downstream calls',
+    'Cross-system coordination',
+    'Validation before execution',
+    'SLA-aware processing',
+    'Retry & reprocess support',
   ],
 };
 ---
@@ -96,6 +110,16 @@ const eomCompact = {
         <ol class="eom-process">
           {eomCompact.process.map((step, index) => <li><span>{String(index + 1).padStart(2, '0')}</span><strong>{step}</strong></li>)}
         </ol>
+      </section>
+
+      <section class="eom-compact-section" aria-labelledby="eom-result">
+        <div class="eom-section-head"><span>Result</span><h2 id="eom-result">What the new orchestration changed</h2></div>
+        <div class="eom-outcome-row">
+          {eomCompact.outcomes.map(([value, label, detail]) => <article><strong>{value}</strong><h3>{label}</h3><p>{detail}</p></article>)}
+        </div>
+        <div class="eom-benefit-strip" aria-label="Operational benefits">
+          {eomCompact.benefits.map((item) => <span>{item}</span>)}
+        </div>
       </section>
 
       <section class="eom-compact-section" aria-labelledby="eom-decisions">
