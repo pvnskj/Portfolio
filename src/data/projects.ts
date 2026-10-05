@@ -29,6 +29,7 @@ export type Project = {
   complexity: string[];
   ownership: string[];
   decisions: DecisionPoint[];
+  prioritization: DecisionPoint[];
   flow: string[];
   flowCaption: string;
   increments: Increment[];
@@ -95,6 +96,23 @@ export const projects: Project[] = [
         title: 'Move orchestration policy toward configuration',
         body:
           'Governed configuration and capability metadata replace an increasing portion of modeled deployment logic. The architecture keeps core execution stable while product and policy behavior can evolve with less structural rework.',
+      },
+    ],
+    prioritization: [
+      {
+        title: 'Impact Mapping',
+        body:
+          'Started from the outcome of reducing fulfillment-change effort, then mapped the actors, capability dependencies, shared context, and platform changes needed to get there.',
+      },
+      {
+        title: 'MoSCoW',
+        body:
+          'Treated preservation of existing service behavior, deterministic execution, and readiness controls as must-haves while sequencing broader configuration and scale capabilities behind them.',
+      },
+      {
+        title: 'WSJF',
+        body:
+          'Sequenced foundation work such as orchestration, decomposition, governed context, and observability by business value, dependency enablement, urgency, and relative delivery size.',
       },
     ],
     flow: ['Business intent', 'Product decomposition', 'Capability proposals', 'Dependency graph', 'Assessment & enrichment', 'Readiness gate', 'Event-driven execution', 'Provisioning'],
@@ -182,6 +200,23 @@ export const projects: Project[] = [
         title: 'Protect retrieval during index refresh',
         body:
           'Large indexing cycles are built away from active reads and swapped safely when ready, preventing concurrent analysts from querying a partially refreshed vector index.',
+      },
+    ],
+    prioritization: [
+      {
+        title: 'RICE',
+        body:
+          'Compared candidate capabilities using reach across engineering teams and repositories, expected investigation-time impact, confidence from pilot evidence, and implementation effort before expanding scope.',
+      },
+      {
+        title: 'Opportunity Scoring',
+        body:
+          'Focused first on high-importance, poorly served analyst problems: cross-repository troubleshooting, current-source access, citation traceability, and stale documentation.',
+      },
+      {
+        title: 'Kano',
+        body:
+          'Treated grounding, permissions, citations, and abstention as baseline trust requirements before investing in delight-oriented UI or conversational enhancements.',
       },
     ],
     flow: ['GitLab / Jira / Confluence', 'Parse & version', 'Hybrid retrieval', 'Metadata filter', 'Rerank', 'Claude via Bedrock', 'Grounding gate', 'Cited answer'],
@@ -272,6 +307,23 @@ export const projects: Project[] = [
           'Serialization connects receipt, custody, deployment, return, fault handling, and disposition so operational movement remains traceable without losing the associated financial history.',
       },
     ],
+    prioritization: [
+      {
+        title: 'Value vs Effort',
+        body:
+          'Used the existing LOB/LOE approach to prioritize high-benefit, lower-effort integrations and avoid spending capacity on low-return automation.',
+      },
+      {
+        title: 'WSJF',
+        body:
+          'Sequenced Item Master, demand planning, fulfillment, and lifecycle closure so the highest-value dependency-enabling work unlocked later capabilities sooner.',
+      },
+      {
+        title: 'Cost of Delay',
+        body:
+          'Prioritized gaps that continued to create spreadsheet labor, reactive purchasing, fulfillment errors, and custody risk while they remained unresolved.',
+      },
+    ],
     flow: ['Item Master', '18-month demand plan', 'Procurement', 'BOM / order', 'Validation gate', 'Fulfillment', 'Serialized custody', 'Return / disposition'],
     flowCaption:
       'Build Plus treats master data, planning, fulfillment, and reverse logistics as one lifecycle: trusted identity becomes the common key that lets each downstream decision remain coherent.',
@@ -357,6 +409,23 @@ export const projects: Project[] = [
         title: 'Keep fulfillment aligned with approved design',
         body:
           'For existing inventory, shipped parts are validated against the approved RFDS configuration so warehouse fulfillment remains aligned with engineering intent.',
+      },
+    ],
+    prioritization: [
+      {
+        title: 'Impact Mapping',
+        body:
+          'Anchored prioritization on the outcome of field-ready, repeatable designs, then traced the required source data, engineering rules, validation gates, generated outputs, and downstream alignment.',
+      },
+      {
+        title: 'MoSCoW',
+        body:
+          'Made trusted inputs, approved equipment, rule validation, and release blocking must-haves; automation conveniences followed only after design integrity was protected.',
+      },
+      {
+        title: 'Cost of Delay',
+        body:
+          'Prioritized controls that reduced ongoing drafting time, stale configurations, field mismatches, and rework during national rollout.',
       },
     ],
     flow: ['RF planning', 'Procurement catalog', 'Governed site model', 'Engineering rules', 'Validation gate', 'RFDS + diagrams', 'Approved configuration', 'Field / inventory execution'],
@@ -446,6 +515,23 @@ export const projects: Project[] = [
           'The four-month redesign required more initial investment, but it changed future portfolio onboarding from structural development to controlled configuration for supported scenarios.',
       },
     ],
+    prioritization: [
+      {
+        title: 'Cost of Delay',
+        body:
+          'Weighed the recurring cost of continuing hard-coded portfolio logic, reconciliation effort, and slower onboarding against the four-month foundational redesign.',
+      },
+      {
+        title: 'Value vs Effort',
+        body:
+          'Compared another quick project-specific extension with the larger reusable capability; the higher upfront effort was justified by repeat use across future portfolios.',
+      },
+      {
+        title: 'WSJF',
+        body:
+          'Sequenced common identity, policy configuration, validation, and reconciliation so enabling dependencies landed before downstream routing complexity.',
+      },
+    ],
     flow: ['Business / project context', 'Common project ID', 'Configurable policy', 'Financial-code assembly', 'Validation', 'WMS / operational handoff', 'ERP posting', 'Audit evidence'],
     flowCaption:
       'The product principle is stable application architecture with financial policy evolving through controlled configuration and a shared identity carried across systems.',
@@ -531,6 +617,23 @@ export const projects: Project[] = [
         title: 'Choose control over one-click speed',
         body:
           'Active-status and identifier validation added friction to submission, but the tradeoff was deliberate: prevent invalid payment instructions before they enter the ERP path.',
+      },
+    ],
+    prioritization: [
+      {
+        title: 'MoSCoW',
+        body:
+          'Treated vendor eligibility, valid rent addresses, required financial identifiers, and payment controls as non-negotiable release requirements before convenience improvements.',
+      },
+      {
+        title: 'Cost of Delay',
+        body:
+          'Prioritized structural vendor and payment issues because each delay sustained recurring manual workarounds and financial-control exposure at rent-roll scale.',
+      },
+      {
+        title: 'Impact Mapping',
+        body:
+          'Connected the business outcome of reliable lease-to-pay execution to the actors, eligibility controls, vendor model, lifecycle milestones, and reconciliation evidence needed to achieve it.',
       },
     ],
     flow: ['Lease execution', 'Lifecycle milestones', 'VendorOne', 'Eligibility gate', 'Payment schedule', 'GL / CIP treatment', 'Oracle execution', 'Reconciliation & evidence'],
