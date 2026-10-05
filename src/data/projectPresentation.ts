@@ -23,7 +23,7 @@ export const projectPresentation: Record<string, Presentation> = {
     "tone": "blue",
     "role": "Product strategy & orchestration",
     "contribution": "I led the shift to dependency-driven execution and a shared order contract across 19+ teams.",
-    "problem": "Each new service combination meant more workflow modeling and regression risk.",
+    "problem": "A simple plan or service change could trigger workflow updates, deployments, and regression testing across multiple teams. As combinations grew, too much delivery effort was going into maintaining fulfillment paths instead of introducing the product change itself.",
     "decision": "Let capabilities declare dependencies so the platform assembles the execution path.",
     "outcome": "Faster logic mapping, with existing service behavior preserved as a migration requirement.",
     "before": "Manually modeled paths",
