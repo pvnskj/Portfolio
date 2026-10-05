@@ -57,6 +57,16 @@
 .approach-footer{display:flex;align-items:center;justify-content:space-between;gap:18px;padding-top:10px}
 .approach-footer p{margin:0;color:#245ab0;font-size:.78rem;font-weight:650}
 .approach-footer span{color:#708195;font-size:.66rem}
+.ai-shift{padding:42px 0 4px;margin-top:42px;border-top:1px solid #dce5ef}
+.ai-shift-intro{display:grid;grid-template-columns:.9fr 1.1fr;gap:54px;align-items:end;margin-bottom:18px}
+.ai-shift-intro h2{font-size:clamp(1.7rem,2.7vw,2.4rem);line-height:1.1;margin:8px 0 0;max-width:620px}
+.ai-shift-intro>p{margin:0;max-width:680px;font-size:.9rem;line-height:1.62}
+.ai-shift-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.ai-shift-card{position:relative;min-height:178px;padding:18px;border:1px solid #dce5ef;border-radius:14px;background:#fff}
+.ai-shift-card>span{display:inline-block;margin-bottom:24px;color:#245ab0;font-size:.6rem;font-weight:750}
+.ai-shift-card h3{margin:0 0 7px;font-size:.9rem;line-height:1.3}
+.ai-shift-card p{margin:0;font-size:.73rem;line-height:1.5;color:#536a80}
+.ai-shift-signoff{margin:12px 0 0;color:#245ab0!important;font-size:.78rem!important;font-weight:650}
 .scan-workspace{padding-bottom:40px}
 .scan-workspace-bar{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:12px;margin:14px 0 18px;font-size:.76rem}
 .scan-workspace-bar a{padding:10px 0;color:#425d78;font-weight:600;min-height:44px}
@@ -168,6 +178,16 @@
   .approach-card-top{margin-bottom:23px}
   .approach-footer{padding-top:7px}
   .approach-footer span{display:none}
+  .ai-shift{margin-top:32px;padding-top:30px}
+  .ai-shift-intro{grid-template-columns:1fr;gap:12px;margin-bottom:16px}
+  .ai-shift-intro h2{font-size:1.65rem}
+  .ai-shift-intro>p{font-size:.84rem;line-height:1.55}
+  .ai-shift-grid{grid-template-columns:1fr 1fr;gap:8px}
+  .ai-shift-card{min-height:190px;padding:16px}
+  .ai-shift-card>span{margin-bottom:19px}
+  .ai-shift-card h3{font-size:.84rem}
+  .ai-shift-card p{font-size:.69rem}
+  .ai-shift-signoff{font-size:.72rem!important;line-height:1.45}
   .scan-epic-header{grid-template-columns:1fr;gap:18px;padding:20px}
   .scan-epic-copy h1{font-size:2rem}
   .epic-category{font-size:.7rem}
