@@ -239,3 +239,27 @@
 @media(max-width:700px){
   .eom-outcome-row{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
+
+/* Compact RAG analysis case study */
+.rag-comparison{display:grid;grid-template-columns:.8fr 1.2fr;gap:8px}
+.rag-comparison>div{display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:8px;padding:12px;border:1px solid #dce5ef;border-radius:12px;background:#fff}
+.rag-comparison-label{grid-column:1/-1;color:#526174;font-size:.61rem;font-weight:750;letter-spacing:.06em;text-transform:uppercase}
+.rag-comparison article{padding:10px;border-radius:9px;background:var(--tint)}
+.rag-comparison strong{display:block;color:var(--accent);font-size:1rem;line-height:1.2}
+.rag-comparison h3{margin:3px 0;font-size:.7rem}
+.rag-comparison p{margin:0;font-size:.62rem;line-height:1.35}
+.rag-source-strip{display:flex;flex-wrap:wrap;gap:6px}
+.rag-source-strip span{padding:7px 10px;border:1px solid #dce5ef;border-radius:9px;background:#fff;color:#415a72;font-size:.65rem;font-weight:650}
+.rag-process{list-style:none;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));margin:0;padding:0;border:1px solid #dce5ef;border-radius:11px;overflow:hidden;background:#fff}
+.rag-process li{position:relative;display:grid;gap:2px;padding:11px 12px;border-right:1px solid #dce5ef}
+.rag-process li:last-child{border-right:0}
+.rag-process li:not(:last-child)::after{content:'→';position:absolute;right:-5px;top:50%;transform:translateY(-50%);z-index:2;background:#fff;color:var(--accent)}
+.rag-process span{color:var(--accent);font-size:.56rem;font-weight:750}
+.rag-process strong{font-size:.67rem;line-height:1.3}
+@media(max-width:700px){
+  .rag-comparison{grid-template-columns:1fr}
+  .rag-process{grid-template-columns:1fr}
+  .rag-process li{border-right:0;border-bottom:1px solid #dce5ef}
+  .rag-process li:last-child{border-bottom:0}
+  .rag-process li::after{display:none}
+}
