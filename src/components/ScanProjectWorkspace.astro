@@ -2,6 +2,7 @@
 import { projects, type Project } from '../data/projects';
 import { projectPresentation, getEvidence, publicText } from '../data/projectPresentation';
 import ProjectSymbol from './ProjectSymbol.astro';
+import RagCompactCase from './RagCompactCase.astro';
 
 interface Props { project: Project; }
 const { project } = Astro.props;
@@ -11,6 +12,8 @@ const evidence = getEvidence(project);
 const proof = evidence[view.proofIndex]!;
 const next = projects[(projects.findIndex((item) => item.slug === project.slug) + 1) % projects.length]!;
 const isEom = project.slug === 'enterprise-order-management';
+const isRag = project.slug === 'rag-analysis-agent';
+const isCompact = isEom || isRag;
 const isRag = project.slug === 'rag-analysis-agent';
 const isCompact = isEom || isRag;
 
@@ -206,6 +209,8 @@ const ragCompact = {
         <div class="eom-frameworks" aria-label="Prioritization lenses">{project.prioritization.map((item) => <span>{item.title}</span>)}</div>
       </section>
     </section>
+  ) : isRag ? (
+    <RagCompactCase project={project} />
   ) : (
 <>
   <section class="scan-story" aria-label="Project at a glance">
