@@ -187,3 +187,44 @@
   .scan-project-card,.board-filters button,.disclosure-plus{transition:none}
   .scan-project-card:hover{transform:none}
 }
+
+
+/* Compact one-page case study for Enterprise Order Management */
+.eom-compact{padding:20px 0 2px}
+.eom-problem-grid{display:grid;grid-template-columns:1.25fr .75fr;gap:12px}
+.eom-problem-card,.eom-goal-card{padding:20px 22px;border:1px solid #dce5ef;border-radius:14px;background:#fff}
+.eom-goal-card{background:var(--tint)}
+.eom-problem-card>span,.eom-goal-card>span,.eom-section-head>span{display:block;color:#526174;font-size:.64rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase}
+.eom-problem-card h2,.eom-goal-card h2{margin:6px 0 8px;font-size:1.05rem;line-height:1.25}
+.eom-problem-card p,.eom-goal-card p{margin:0;font-size:.82rem;line-height:1.5}
+.eom-compact-section{padding-top:20px}
+.eom-section-head{display:flex;align-items:baseline;gap:12px;margin-bottom:9px}
+.eom-section-head h2{margin:0;font-size:1.02rem}
+.eom-card-row{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+.eom-card-row article,.eom-decision-carousel article{padding:14px 15px;border:1px solid #dce5ef;border-radius:11px;background:#fff}
+.eom-card-row h3,.eom-decision-carousel h3,.eom-priority-row h3{margin:0 0 4px;font-size:.76rem;line-height:1.3}
+.eom-card-row p,.eom-decision-carousel p,.eom-priority-row p{margin:0;font-size:.7rem;line-height:1.42;color:#52677a}
+.eom-priority-row{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.eom-priority-row article{display:grid;grid-template-columns:28px minmax(0,1fr);gap:8px;padding:13px 14px;border:1px solid #dce5ef;border-radius:11px;background:#fff}
+.eom-priority-row b{display:grid;place-items:center;width:25px;height:25px;border-radius:7px;background:var(--tint);color:var(--accent);font-size:.58rem}
+.eom-frameworks{display:flex;gap:6px;flex-wrap:wrap;margin-top:7px}
+.eom-frameworks span{padding:4px 7px;border-radius:999px;background:#f2f5f9;color:#52677a;font-size:.59rem;font-weight:650}
+.eom-process{list-style:none;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;margin:0;padding:0;border:1px solid #dce5ef;border-radius:11px;overflow:hidden;background:#fff}
+.eom-process li{position:relative;display:flex;align-items:center;gap:8px;padding:12px 14px;border-right:1px solid #dce5ef}
+.eom-process li:last-child{border-right:0}
+.eom-process li:not(:last-child)::after{content:'→';position:absolute;right:-5px;z-index:2;color:var(--accent);background:#fff;padding:0 1px}
+.eom-process span{color:var(--accent);font-size:.58rem;font-weight:700}
+.eom-process strong{font-size:.7rem}
+.eom-decision-carousel{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(205px,1fr);gap:8px;overflow-x:auto;padding-bottom:4px;scroll-snap-type:x proximity}
+.eom-decision-carousel article{scroll-snap-align:start}
+@media(max-width:700px){
+  .eom-problem-grid{grid-template-columns:1fr}
+  .eom-card-row{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .eom-priority-row{grid-template-columns:1fr}
+  .eom-process{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .eom-process li:nth-child(2){border-right:0}
+  .eom-process li:nth-child(-n+2){border-bottom:1px solid #dce5ef}
+  .eom-process li::after{display:none}
+  .eom-section-head{display:block}
+  .eom-section-head h2{margin-top:3px}
+}
