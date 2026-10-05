@@ -60,7 +60,7 @@ export const projects: Project[] = [
     productGoal:
       'Create an order-orchestration platform that can launch and change subscriber services without manually remodeling every fulfillment path, while preserving deterministic execution, shared context, and operational visibility.',
     problem:
-      'Static workflow modeling worked when fulfillment paths were limited and predictable. At scale, hundreds of rigid models became a change bottleneck: parallel execution had to be defined manually, product changes triggered model deployments, and fragmented state across capabilities increased the risk of incomplete enrichment or logic gaps.',
+      'Every time the business introduced a new plan, add-on, or service combination, the fulfillment flow had to be revisited. Teams were spending time updating workflow models, coordinating deployments, and regression-testing paths that were largely doing the same work in slightly different ways. With 18 service intents and 19+ teams involved, the bigger problem was no longer one workflow. It was how to make product changes without repeatedly rebuilding the fulfillment logic.',
     complexity: [
       'Legacy workflow orchestration with manually modeled parallel paths and deployment artifacts',
       'Commercial-product decomposition into technical resource specifications',
@@ -120,24 +120,24 @@ export const projects: Project[] = [
       'The architectural shift is from telling the engine exactly how to traverse a predefined path to declaring capabilities, dependencies, and intent so the executable topology can be assembled consistently.',
     increments: [
       {
-        title: 'Orchestration foundation',
-        focus: 'Capability registration, dependency graph, parallel execution',
-        learning: 'Can dependency declarations replace manually modeled paths without losing deterministic behavior?',
+        title: 'Stop rebuilding fulfillment paths',
+        focus: 'Move from manually modeled workflows to capabilities that declare what they need and what they can do.',
+        learning: 'Could we add or change a service without asking teams to redesign the execution path every time?',
       },
       {
-        title: 'Product decomposition',
-        focus: 'Commercial offers, technical resources, plan modifications, add-ons',
-        learning: 'Can high-level customer intent become the right technical work without embedding every path in a static workflow?',
+        title: 'Turn a product order into technical work',
+        focus: 'Break plans, add-ons, and service changes into the technical capabilities needed to fulfill them.',
+        learning: 'Could the platform understand the work behind a customer request while keeping product-specific logic out of the core engine?',
       },
       {
-        title: 'Governed order context',
-        focus: 'Assessment, enrichment, common data contract, readiness synchronization',
-        learning: 'Can parallel capabilities share enriched state without data loss or premature execution?',
+        title: 'Keep every team working from the same order',
+        focus: 'Create a shared order context for identifiers, enrichment, validation, and readiness before execution.',
+        learning: 'How do we let multiple capabilities work in parallel without one team acting on incomplete or different order data?',
       },
       {
-        title: 'Scale & observability',
-        focus: 'Event-driven coordination, execution visibility, configuration-driven policy, throughput modeling',
-        learning: 'Can the platform remain observable and adaptable as order volume and service combinations increase?',
+        title: 'Make the new model usable in production',
+        focus: 'Add execution visibility, event coordination, configurable rules, and capacity planning as the model scales.',
+        learning: 'If execution becomes dynamic, can support teams still see what happened, where an order is waiting, and why?',
       },
     ],
     valueNarrative:
