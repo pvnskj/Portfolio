@@ -56,12 +56,16 @@ const isEom = project.slug === 'enterprise-order-management';
           <details class="scan-feature" name="project-detail">
             <summary><span class="issue-key">FOCUS-{String(index + 1).padStart(2, '0')}</span><h3>{publicText(increment.title)}</h3><span class="disclosure-plus" aria-hidden="true">+</span></summary>
             <div class="scan-feature-content">
-              <div class="scan-detail-pair"><div><h4>Focus</h4><p>{publicText(increment.focus)}</p></div><div><h4>Question to resolve</h4><p>{publicText(increment.learning)}</p></div></div>
-              {area && <>
-                <div class="scan-detail-pair"><div><h4>What I owned</h4><ul>{area.ownership.map((item) => <li>{item}</li>)}</ul></div><div><h4>Challenges & trade-offs</h4><ul>{area.challenges.map((item) => <li>{item}</li>)}</ul></div></div>
-                <div class="scan-detail-pair"><div><h4>Capabilities</h4><ul>{area.capabilities.map((item) => <li>{item}</li>)}</ul></div><div><h4>Decisions</h4>{area.decisions.map((decision) => <p><b>{decision.title}.</b> {decision.body}</p>)}</div></div>
-                <p class="scan-learning"><b>What I learned.</b> {area.learning}</p>
-              </>}
+              {area ? (
+                <div class="scan-detail-pair">
+                  <div><h4>What was happening</h4><p>{area.whyItMatters}</p></div>
+                  <div><h4>What I changed</h4><p>{area.ownership[0]}</p></div>
+                  <div><h4>Key decision</h4><p>{area.decisions[0]?.body}</p></div>
+                  <div><h4>Why it mattered</h4><p>{area.learning}</p></div>
+                </div>
+              ) : (
+                <div class="scan-detail-pair"><div><h4>Focus</h4><p>{publicText(increment.focus)}</p></div><div><h4>Question to resolve</h4><p>{publicText(increment.learning)}</p></div></div>
+              )}
             </div>
           </details>
         );
