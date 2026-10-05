@@ -14,7 +14,7 @@ const next = projects[(projects.findIndex((item) => item.slug === project.slug) 
 const isEom = project.slug === 'enterprise-order-management';
 
 const eomCompact = {
-  problem: 'A vendor-owned orchestration product was costing us on every order. As volume grew, so did the cost, while product changes still depended on an external platform. The opportunity was to build our own orchestration capability: reduce the per-order dependency, own the roadmap, and make fulfillment intelligent enough to assemble work from business intent.',
+  problem: 'Our vendor orchestration product charged us per order, so cost grew directly with volume. We chose to build our own platform to remove that dependency, control the roadmap, and introduce intelligent orchestration.',
   goal: 'Build an in-house orchestration platform that lowers dependency cost, gives us control of change, and makes new products easier to launch.',
   ownership: [
     ['Business case', 'Frame the build-vs-buy opportunity around recurring order cost, control, and scale.'],
@@ -51,7 +51,7 @@ const eomCompact = {
     </div>
     <aside class="scan-primary-proof" aria-label="Headline evidence">
       <span class="proof-type">{proof.type}</span><strong>{proof.value}</strong><span>{proof.label}</span><p>{view.proofNote}</p>
-      <a href="#evidence" data-open-evidence>See the basis <span aria-hidden="true">↗</span></a>
+      {!isEom && <a href="#evidence" data-open-evidence>See the basis <span aria-hidden="true">↗</span></a>}
     </aside>
   </section>
 
