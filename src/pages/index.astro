@@ -1,193 +1,215 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ProjectSymbol from '../components/ProjectSymbol.astro';
-import { projects } from '../data/projects';
-import { projectPresentation, getEvidence } from '../data/projectPresentation';
 
-const groups = ['All work', 'Platforms', 'AI', 'Operations', 'Finance'];
 const base = import.meta.env.BASE_URL;
 
-const aiShiftCards = [
+const boardRows = [
   {
-    title: 'Backlog → outcomes',
-    body: 'AI accelerates analysis, refinement, and dependency discovery, so less time goes into manual grooming and more into shaping the right solution.',
+    slug: 'enterprise-order-management',
+    title: 'Enterprise Order Management',
+    group: 'Platform',
+    tone: 'blue',
+    scale: '19+ teams',
+    scaleNote: 'Cross-functional delivery',
+    impact: 'Reduce vendor dependency with in-house orchestration',
+    evidence: '20% faster mapping',
+    evidenceNote: 'Measured POC',
   },
   {
-    title: 'Stories → epics',
-    body: 'I can work at a broader level by connecting business intent, technical impact, dependencies, and delivery planning earlier.',
+    slug: 'rag-analysis-agent',
+    title: 'Enterprise RAG Analysis Agent',
+    group: 'AI',
+    tone: 'violet',
+    scale: '11GB · 558+ projects',
+    scaleNote: 'Unified knowledge sources',
+    impact: 'Unify business + technical analysis',
+    evidence: '~10 days → ~6 hrs',
+    evidenceNote: 'Analysis work',
   },
   {
-    title: 'Velocity → time to market',
-    body: 'Sprint velocity still matters, but faster analysis, clearer scope, and earlier validation reduce the delay between idea and implementation.',
+    slug: 'build-plus',
+    title: 'Build Plus',
+    group: 'Operations',
+    tone: 'teal',
+    scale: '300+ requirements',
+    scaleNote: 'Product + engineering',
+    impact: 'Reduce manual supply-chain handoffs',
+    evidence: '10K+ hrs/year',
+    evidenceNote: 'Projected capacity returned',
   },
   {
-    title: 'Fragmented knowledge → shared context',
-    body: 'AI helps connect prior decisions, documentation, technical systems, and team knowledge so stakeholders, developers, and QA work from a fuller picture.',
+    slug: 'rfds-automation',
+    title: 'RFDS Automation',
+    group: 'Operations',
+    tone: 'cyan',
+    scale: '1,000+ designs/mo',
+    scaleNote: 'Engineering documents',
+    impact: 'Automate engineering document generation',
+    evidence: '$1.2M avoided',
+    evidenceNote: 'Annual cost avoidance',
   },
   {
-    title: 'Single stream → multi-product view',
-    body: 'Cross-product impacts and dependencies are easier to surface, making sequencing and integration across product streams more practical.',
+    slug: 'dynamic-gl-coding',
+    title: 'Dynamic GL Coding',
+    group: 'Finance',
+    tone: 'amber',
+    scale: '4+ portfolios',
+    scaleNote: 'Finance + business units',
+    impact: 'Make finance routing configurable and reusable',
+    evidence: '40% faster close',
+    evidenceNote: 'Month-end close',
   },
   {
-    title: 'Coordination → customer focus',
-    body: 'With less time spent gathering information and coordinating handoffs, I can spend more time on customer needs, experience, and product outcomes.',
+    slug: 'lease-vendor-management',
+    title: 'Lease & Vendor Management',
+    group: 'Finance',
+    tone: 'rose',
+    scale: '$23.7M/mo',
+    scaleNote: 'Rent roll governed',
+    impact: 'Improve vendor, address, and payment controls',
+    evidence: '~2× ROI',
+    evidenceNote: 'Estimated return',
   },
 ];
 
 const approachCards = [
   {
-    number: '01',
     title: 'Start with the outcome',
-    body: 'I begin with the problem, who it affects, and what success should look like before deciding what to build.',
+    body: 'Understand the problem, who it affects, and what success should look like before deciding what to build.',
     stance: 'Visionary',
     value: 'Focus',
   },
   {
-    number: '02',
     title: 'Bring the right people in',
-    body: 'I work across business, design, engineering, operations, and users to uncover constraints and challenge assumptions early.',
+    body: 'Connect business, design, engineering, operations, and users early enough to expose constraints and assumptions.',
     stance: 'Collaborator',
     value: 'Openness · Respect',
   },
   {
-    number: '03',
     title: 'Turn ambiguity into choices',
-    body: 'I make trade-offs visible and prioritize using value, risk, effort, dependencies, and evidence.',
+    body: 'Make the options and trade-offs visible, then prioritize with value, risk, effort, dependencies, and evidence.',
     stance: 'Decision Maker',
     value: 'Courage',
   },
   {
-    number: '04',
     title: 'Validate before scaling',
-    body: 'When uncertainty is high, I prefer a pilot or smaller release that can prove the direction before committing heavily.',
+    body: 'Use pilots, experiments, or smaller releases when uncertainty is high before committing significant effort.',
     stance: 'Experimenter',
     value: 'Commitment',
   },
   {
-    number: '05',
     title: 'Balance user and business',
-    body: 'I represent customer needs without losing sight of business outcomes, technical realities, and long-term product health.',
+    body: 'Protect customer needs without losing sight of business outcomes, technical realities, and long-term product health.',
     stance: 'Customer Representative',
     value: 'Focus',
   },
   {
-    number: '06',
     title: 'Align, then enable',
-    body: 'I create clarity around priorities and outcomes, then give the team room to solve the problem instead of prescribing the implementation.',
+    body: 'Create clarity around priorities and outcomes, then give teams room to solve the problem rather than prescribing implementation.',
     stance: 'Influencer',
     value: 'Respect',
   },
 ];
+
+const aiShifts = [
+  ['Backlog', 'Outcomes'],
+  ['Stories', 'Epics'],
+  ['Velocity', 'Time to market'],
+  ['Fragmented knowledge', 'Shared context'],
+  ['Single stream', 'Multi-product view'],
+  ['Coordination', 'Customer focus'],
+];
 ---
 
 <BaseLayout>
-  <div class="scan-home shell">
-    <section class="scan-hero" aria-labelledby="portfolio-title">
-      <p class="eyebrow">Venkata Parimi · Senior Technical Product Owner</p>
-      <h1 id="portfolio-title">Turning challenges into opportunity.</h1>
-      <p class="scan-lede">I connect business decisions with the systems behind them.<br class="desktop-break" /> From enterprise platforms to AI products, I make complex work easier to change.</p>
+  <div class="scan-home shell portfolio-home">
+    <section class="portfolio-intro" aria-labelledby="portfolio-title">
+      <div>
+        <p class="eyebrow">Venkata Parimi · Senior Technical Product Owner</p>
+        <h1 id="portfolio-title">Turning complexity into product outcomes.</h1>
+      </div>
+      <p>I connect business decisions with the systems behind them, from enterprise platforms to AI products.</p>
     </section>
 
-    <section id="work" class="work-board" aria-labelledby="work-title" data-work-board>
-      <div class="board-heading">
-        <div><p class="eyebrow">Selected product work</p><h2 id="work-title">The problem, the decision, and the evidence.</h2></div>
-        <span class="board-count" aria-live="polite" data-project-count>6 projects</span>
-      </div>
-      <div class="board-filters" role="group" aria-label="Filter projects" data-project-filters hidden>
-        {groups.map((group, index) => <button type="button" data-filter={group} aria-pressed={index === 0}>{group}</button>)}
+    <section id="work" class="portfolio-board" aria-labelledby="work-title">
+      <div class="portfolio-section-head">
+        <div>
+          <p class="eyebrow">Selected product work</p>
+          <h2 id="work-title">Active work</h2>
+        </div>
+        <p>Six initiatives, from scale to measurable impact.</p>
       </div>
 
-      <div class="scan-project-grid">
-        {projects.map((project) => {
-          const view = projectPresentation[project.slug]!;
-          const proof = getEvidence(project)[view.proofIndex]!;
-          return (
-            <article class="scan-project-card" data-group={view.group} data-tone={view.tone}>
-              <a class="scan-project-link" href={`${base}work/${project.slug}/`} aria-labelledby={`card-${project.slug}`}>
-                <div class="card-meta"><span><i aria-hidden="true">◆</i> EPIC-{project.index}</span><span>{view.group}</span></div>
-                <div class="card-title"><ProjectSymbol slug={project.slug} /><h3 id={`card-${project.slug}`}>{project.title}</h3></div>
-                <p class="card-decision">{view.decision}</p>
-                <div class="card-proof"><span class="proof-type">{proof.type}</span><strong>{proof.value}</strong><span>{proof.label}</span><small>{view.proofNote}</small></div>
-                <div class="card-bottom"><span>{view.role}</span><b aria-hidden="true">↗</b></div>
-              </a>
-            </article>
-          );
-        })}
+      <div class="portfolio-board-grid" role="table" aria-label="Selected product work">
+        <div class="portfolio-board-header" role="row">
+          <div role="columnheader"><strong>Initiative</strong><span>What I built and owned</span></div>
+          <div role="columnheader"><strong>Scale</strong><span>Size and scope</span></div>
+          <div role="columnheader"><strong>Product impact</strong><span>What changed</span></div>
+          <div role="columnheader"><strong>Evidence</strong><span>Measured outcome</span></div>
+        </div>
+
+        {boardRows.map((row) => (
+          <a class="portfolio-board-row" data-tone={row.tone} href={`${base}work/${row.slug}/`} role="row" aria-label={`Open ${row.title} case study`}>
+            <div class="portfolio-board-initiative" role="cell">
+              <ProjectSymbol slug={row.slug} />
+              <span><small>{row.group}</small><strong>{row.title}</strong></span>
+            </div>
+            <div class="portfolio-board-cell" role="cell">
+              <strong>{row.scale}</strong>
+              <span>{row.scaleNote}</span>
+            </div>
+            <div class="portfolio-board-cell portfolio-impact" role="cell">
+              <strong>{row.impact}</strong>
+            </div>
+            <div class="portfolio-board-cell portfolio-evidence" role="cell">
+              <span><strong>{row.evidence}</strong><small>{row.evidenceNote}</small></span>
+              <b aria-hidden="true">›</b>
+            </div>
+          </a>
+        ))}
       </div>
     </section>
 
-    <section id="approach" class="scan-approach approach-carousel-section" aria-labelledby="approach-title">
-      <div class="approach-intro">
+    <section id="approach" class="home-approach" aria-labelledby="approach-title">
+      <div class="portfolio-section-head">
         <div>
           <p class="eyebrow">How I work</p>
-          <h2 id="approach-title">How I approach a challenge.</h2>
+          <h2 id="approach-title">How I approach a challenge</h2>
         </div>
-        <p>I use Scrum values and Product Owner stances as behaviors, not labels: create clarity, make deliberate trade-offs, validate with evidence, and keep people aligned on the outcome.</p>
+        <p>Product Owner stances and Scrum values expressed through how I work, not as a checklist.</p>
       </div>
 
-      <div class="approach-carousel" aria-label="Product ownership approach">
+      <div class="home-approach-track" aria-label="Product ownership approach">
         {approachCards.map((card) => (
-          <article class="approach-card">
-            <div class="approach-card-top">
-              <span>{card.number}</span>
-              <div class="approach-tags"><b>{card.stance}</b><i>{card.value}</i></div>
-            </div>
+          <article class="home-approach-card">
+            <div class="home-approach-tags"><span>{card.stance}</span><i>{card.value}</i></div>
             <h3>{card.title}</h3>
             <p>{card.body}</p>
           </article>
         ))}
-      </div>
-
-      <div class="approach-footer">
-        <p>Understand the problem. Make the call. Validate the outcome.</p>
-        <span>Swipe or scroll →</span>
       </div>
     </section>
 
-    <section class="ai-shift" aria-labelledby="ai-shift-title">
-      <div class="ai-shift-intro">
+    <section class="home-ai" aria-labelledby="ai-title">
+      <div class="portfolio-section-head">
         <div>
           <p class="eyebrow">How AI changed my work</p>
-          <h2 id="ai-shift-title">Less coordination overhead. More product thinking.</h2>
+          <h2 id="ai-title">Less coordination overhead. More product thinking.</h2>
         </div>
-        <p>AI has not changed my accountability as a Product Owner. It has changed how much time I can spend on the decisions that matter.</p>
+        <p>AI has not changed my accountability. It has changed how much time I can spend on the decisions that matter.</p>
       </div>
 
-      <div class="ai-shift-grid">
-        {aiShiftCards.map((card, index) => (
-          <article class="ai-shift-card">
-            <span>{String(index + 1).padStart(2, '0')}</span>
-            <h3>{card.title}</h3>
-            <p>{card.body}</p>
+      <div class="home-ai-track" aria-label="How AI changed my product work">
+        {aiShifts.map(([before, after]) => (
+          <article class="home-ai-shift">
+            <span>{before}</span>
+            <b aria-hidden="true">→</b>
+            <strong>{after}</strong>
           </article>
         ))}
       </div>
-
-      <p class="ai-shift-signoff">Faster analysis. Better context. Shorter path from customer need to product outcome.</p>
+      <p class="home-ai-signoff">Faster analysis. Better context. Shorter path from customer need to product outcome.</p>
     </section>
   </div>
 </BaseLayout>
-
-<script>
-  function bindProjectFilters() {
-    const board = document.querySelector<HTMLElement>('[data-work-board]');
-    if (!board || board.dataset.bound === 'true') return;
-    board.dataset.bound = 'true';
-    const controls = board.querySelector<HTMLElement>('[data-project-filters]');
-    const buttons = board.querySelectorAll<HTMLButtonElement>('[data-filter]');
-    const cards = board.querySelectorAll<HTMLElement>('[data-group]');
-    const count = board.querySelector<HTMLElement>('[data-project-count]');
-    if (controls) controls.hidden = false;
-    buttons.forEach((button) => button.addEventListener('click', () => {
-      let visible = 0;
-      buttons.forEach((item) => item.setAttribute('aria-pressed', String(item === button)));
-      cards.forEach((card) => {
-        card.hidden = button.dataset.filter !== 'All work' && card.dataset.group !== button.dataset.filter;
-        if (!card.hidden) visible += 1;
-      });
-      if (count) count.textContent = `${visible} ${visible === 1 ? 'project' : 'projects'}`;
-    }));
-  }
-  bindProjectFilters();
-  document.addEventListener('astro:page-load', bindProjectFilters);
-</script>
