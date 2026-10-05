@@ -1,6 +1,5 @@
 ---
 import { projects, type Project } from '../data/projects';
-import { eomFocusAreas } from '../data/eomCase';
 import { projectPresentation, getEvidence, publicText } from '../data/projectPresentation';
 import ProjectSymbol from './ProjectSymbol.astro';
 
@@ -53,7 +52,7 @@ const eomCompact = {
 
 <main class="scan-workspace shell" data-project={project.slug} data-tone={view.tone}>
   <nav class="scan-workspace-bar" aria-label="Project navigation">
-    <a href={`${base}#work`}>← All projects</a><span>◆ EPIC-{project.index}</span><a href={`${base}work/${next.slug}/`}>Next project →</a>
+    <a href={`${base}#work`}>← Portfolio</a><span>◆ {isEom ? 'ORDER ORCHESTRATION' : `EPIC-${project.index}`}</span><a href={`${base}work/${next.slug}/`}>Next →</a>
   </nav>
 
   <section class="scan-epic-header" aria-labelledby="project-title">
@@ -61,17 +60,19 @@ const eomCompact = {
       <div class="epic-category"><ProjectSymbol slug={project.slug} /><span>{view.group} / {view.role}</span></div>
       <h1 id="project-title">{project.title}</h1>
       <p class="epic-takeaway">{view.before} <span aria-hidden="true">→</span><span class="sr-only">to</span> <strong>{view.after}.</strong></p>
-      <p class="epic-contribution"><b>My contribution</b>{view.contribution}</p>
+      <p class="epic-contribution"><b>{isEom ? 'My role' : 'My contribution'}</b>{isEom ? 'Product strategy, prioritization, orchestration roadmap, and cross-team migration.' : view.contribution}</p>
     </div>
     <aside class="scan-primary-proof" aria-label="Headline evidence">
-      <span class="proof-type">{proof.type}</span><strong>{proof.value}</strong><span>{proof.label}</span><p>{view.proofNote}</p>
-      {!isEom && <a href="#evidence" data-open-evidence>See the basis <span aria-hidden="true">↗</span></a>}
+      <span class="proof-type">{proof.type}</span><strong>{proof.value}</strong><span>{proof.label}</span><p>{isEom ? 'Measured in the initial orchestration proof of concept.' : view.proofNote}</p>
+      {!isEom && <a href="#evidence" data-open-evidence>See evidence <span aria-hidden="true">↗</span></a>}
     </aside>
   </section>
 
-  <section class="scan-evidence-strip" aria-label="More evidence">
-    {evidence.filter((_, index) => index !== view.proofIndex).map((metric) => <article><span class="proof-type">{metric.type}</span><strong>{metric.value}</strong><span>{metric.label}</span></article>)}
-  </section>
+  {!isEom && (
+    <section class="scan-evidence-strip" aria-label="More evidence">
+      {evidence.filter((_, index) => index !== view.proofIndex).map((metric) => <article><span class="proof-type">{metric.type}</span><strong>{metric.value}</strong><span>{metric.label}</span></article>)}
+    </section>
+  )}
 
   {isEom ? (
     <section class="eom-compact" aria-label="Enterprise Order Management case study">
@@ -145,26 +146,14 @@ const eomCompact = {
   <section class="scan-detail-section" aria-labelledby="details-title">
     <div class="scan-detail-heading"><h2 id="details-title">Inside the work</h2><span>Explore on this page</span></div>
     <div class="scan-feature-list">
-      {project.increments.map((increment, index) => {
-        const area = isEom ? eomFocusAreas[index] : undefined;
-        return (
-          <details class="scan-feature" name="project-detail">
-            <summary><span class="issue-key">FOCUS-{String(index + 1).padStart(2, '0')}</span><h3>{publicText(increment.title)}</h3><span class="disclosure-plus" aria-hidden="true">+</span></summary>
-            <div class="scan-feature-content">
-              {area ? (
-                <div class="scan-detail-pair">
-                  <div><h4>What was happening</h4><p>{area.whyItMatters}</p></div>
-                  <div><h4>What I changed</h4><p>{area.ownership[0]}</p></div>
-                  <div><h4>Key decision</h4><p>{area.decisions[0]?.body}</p></div>
-                  <div><h4>Why it mattered</h4><p>{area.learning}</p></div>
-                </div>
-              ) : (
-                <div class="scan-detail-pair"><div><h4>Focus</h4><p>{publicText(increment.focus)}</p></div><div><h4>Question to resolve</h4><p>{publicText(increment.learning)}</p></div></div>
-              )}
-            </div>
-          </details>
-        );
-      })}
+      {project.increments.map((increment, index) => (
+        <details class="scan-feature" name="project-detail">
+          <summary><span class="issue-key">FOCUS-{String(index + 1).padStart(2, '0')}</span><h3>{publicText(increment.title)}</h3><span class="disclosure-plus" aria-hidden="true">+</span></summary>
+          <div class="scan-feature-content">
+            <div class="scan-detail-pair"><div><h4>Focus</h4><p>{publicText(increment.focus)}</p></div><div><h4>Question to resolve</h4><p>{publicText(increment.learning)}</p></div></div>
+          </div>
+        </details>
+      ))}
 
       <details class="scan-record" name="project-detail">
         <summary><span class="record-symbol" aria-hidden="true">◇</span><h3>Decisions & trade-offs</h3><span class="disclosure-plus" aria-hidden="true">+</span></summary>
@@ -213,8 +202,10 @@ const eomCompact = {
     if (!workspace || workspace.dataset.bound === 'true') return;
     workspace.dataset.bound = 'true';
     const evidence = workspace.querySelector<HTMLDetailsElement>('#evidence');
-    const openEvidence = () => { if (evidence && window.location.hash === '#evidence') evidence.open = true; };
-    workspace.querySelector('[data-open-evidence]')?.addEventListener('click', () => { if (evidence) evidence.open = true; });
+    const evidenceLink = workspace.querySelector('[data-open-evidence]');
+    if (!evidence || !evidenceLink) return;
+    const openEvidence = () => { if (window.location.hash === '#evidence') evidence.open = true; };
+    evidenceLink.addEventListener('click', () => { evidence.open = true; });
     window.addEventListener('hashchange', openEvidence);
     document.addEventListener('astro:before-swap', () => window.removeEventListener('hashchange', openEvidence), { once: true });
     openEvidence();
