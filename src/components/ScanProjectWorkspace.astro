@@ -75,6 +75,13 @@ const isEom = project.slug === 'enterprise-order-management';
       </details>
 
       <details class="scan-record" name="project-detail">
+        <summary><span class="record-symbol" aria-hidden="true">◈</span><h3>Prioritization frameworks</h3><span class="disclosure-plus" aria-hidden="true">+</span></summary>
+        <div class="scan-record-content">
+          {project.prioritization.map((framework, index) => <article class="scan-decision-row"><span>{String(index + 1).padStart(2, '0')}</span><div><h4>{framework.title}</h4><p>{publicText(framework.body)}</p></div></article>)}
+        </div>
+      </details>
+
+      <details class="scan-record" name="project-detail">
         <summary><span class="record-symbol" aria-hidden="true">◎</span><h3>Ownership & system context</h3><span class="disclosure-plus" aria-hidden="true">+</span></summary>
         <div class="scan-record-content">
           <p>{publicText(project.summary)}</p>
