@@ -245,7 +245,7 @@ export const projects: Project[] = [
       },
     ],
     valueNarrative:
-      'The prior workflow averaged about ten days across business and technical analysis. With the agent, the analysis work itself dropped to roughly six hours: about two hours for business impact and four hours for technical impact. Because analysts still validate evidence and create the delivery stories, the practical workflow measure is typically one to two days from analysis into development readiness.'
+      'The prior workflow averaged about ten days across business and technical analysis. With the agent, the analysis work itself dropped to roughly six hours: about two hours for business impact and four hours for technical impact. Because analysts still validate evidence and create the delivery stories, the practical workflow measure is typically one to two days from analysis into development readiness.',
     metrics: [
       { value: '~10 days → ~6 hrs', label: 'Analysis work', detail: 'Business and technical analysis combined: roughly six days plus four days before, versus about two hours plus four hours with the agent.' },
       { value: '1–2 days', label: 'Story movement', detail: 'Typical time for analyst validation and story creation before the request moves toward development.' },
