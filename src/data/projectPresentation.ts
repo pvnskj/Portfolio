@@ -59,12 +59,12 @@ export const projectPresentation: Record<string, Presentation> = {
     "group": "AI",
     "tone": "violet",
     "role": "Builder · product & engineering",
-    "contribution": "I built the analysis agent and made citations, permission-aware retrieval, and evaluation gates central to the product.",
-    "problem": "Investigations took days of searching fragmented engineering knowledge.",
-    "decision": "Ground answers in current source evidence and abstain when that evidence is insufficient.",
-    "outcome": "Shorter investigations with traceable answers and a repeatable evaluation process.",
-    "before": "Manual investigation",
-    "after": "Grounded analysis",
+    "contribution": "I personally designed and built the working analysis agent and introduced it into the analyst workflow.",
+    "problem": "Business and technical analysis together consumed about 10 days before development could start.",
+    "decision": "Unify fragmented business and technical knowledge into one grounded, human-validated analysis workflow.",
+    "outcome": "About 6 hours of analysis work, with stories typically moving forward in 1–2 days after validation.",
+    "before": "~10 days of analysis",
+    "after": "~6 hours with the agent",
     "flow": [
       "Engineering sources",
       "Permission-aware retrieval",
@@ -72,11 +72,15 @@ export const projectPresentation: Record<string, Presentation> = {
       "Cited answer"
     ],
     "proofIndex": 0,
-    "proofNote": "Historical investigations compared with pilot use",
+    "proofNote": "Prior workflow compared with agent-assisted analysis",
     "evidence": [
       [
         "Measured",
-        "Analysis cycle"
+        "Analysis work"
+      ],
+      [
+        "Observed workflow",
+        "Story movement"
       ],
       [
         "Observed",
@@ -85,10 +89,6 @@ export const projectPresentation: Record<string, Presentation> = {
       [
         "Observed",
         "Projects searchable"
-      ],
-      [
-        "Evaluation set",
-        "Groundedness / recall"
       ]
     ]
   },
