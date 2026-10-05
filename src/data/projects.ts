@@ -160,11 +160,11 @@ export const projects: Project[] = [
     question: 'How do you turn an 11GB engineering haystack into evidence a production team can trust?',
     headline: 'Converting fragmented engineering knowledge into grounded, line-level operational intelligence.',
     summary:
-      'Order Management troubleshooting depended on manual string searches across code, Jira, Confluence, logs, catalog imports, and technical design artifacts. The real problem was not finding documents; it was reconstructing functional relationships among identifiers, configuration, code, and deployed behavior without losing source evidence or version context.',
+      'Feature intake moved through separate business and technical analysis stages. Roughly 12 analysts spent about six days researching business impact before developers spent another four days tracing technical impact. I built a RAG-based analysis agent that brings those sources together so both sides of the analysis can begin from the same grounded evidence.',
     productGoal:
-      'Reduce technical investigation time by giving developers and analysts a permission-aware analysis agent that retrieves current engineering evidence, cites every material claim, and abstains when the available sources cannot support an answer.',
+      'Reduce the time from feature intake to development by giving analysts a grounded agent that can assemble business and technical impact across engineering repositories, documentation, shared files, and meeting context while keeping human validation in the workflow.',
     problem:
-      'Complex failures could require days of cross-repository analysis. A single issue might involve a toggle, catalog decomposition, a missing GUID, environment configuration, code behavior, and documentation that no longer matched the deployed state. A generic chatbot would have increased risk if it generated plausible but ungrounded explanations.',
+      'A typical feature request could consume nearly an entire two-week sprint before development started: about six days of business analysis followed by four days of technical analysis. Information was fragmented across repositories, Confluence, shared-drive documents, sheets, PDFs, and meeting transcripts, so analysts and developers repeated searches and still risked missing context.',
     complexity: [
       '11GB+ heterogeneous corpus spanning 558+ GitLab projects, Jira, Confluence, transcripts, design documents, and 260MB+ Hansen XML imports',
       'Hybrid retrieval across conceptual meaning, project metadata, branch/version context, and technical identifiers',
@@ -245,12 +245,12 @@ export const projects: Project[] = [
       },
     ],
     valueNarrative:
-      'The measured end-to-end result was a reduction in complex technical investigation from roughly six days to about two hours. Individual retrieval steps can complete much faster—for example, a missing GUID in a large Hansen import was located and cited in 42 seconds—but those examples are kept separate from the full investigation-cycle metric.',
+      'The prior workflow averaged about ten days across business and technical analysis. With the agent, the analysis work itself dropped to roughly six hours: about two hours for business impact and four hours for technical impact. Because analysts still validate evidence and create the delivery stories, the practical workflow measure is typically one to two days from analysis into development readiness.'
     metrics: [
-      { value: '~6 days → ~2 hrs', label: 'Measured analysis cycle', detail: 'End-to-end technical investigation comparison from historical OM troubleshooting and pilot use.' },
-      { value: '11GB+', label: 'Production knowledge corpus', detail: 'Observed structured and unstructured engineering data indexed for analysis.' },
-      { value: '558+', label: 'OM projects searchable', detail: 'Observed cross-project impact-analysis scope.' },
-      { value: '100% / 90%+', label: 'Golden-set groundedness / recall', detail: 'Measured on the 25+ case evaluation suite; not a claim of universal model accuracy.' },
+      { value: '~10 days → ~6 hrs', label: 'Analysis work', detail: 'Business and technical analysis combined: roughly six days plus four days before, versus about two hours plus four hours with the agent.' },
+      { value: '1–2 days', label: 'Story movement', detail: 'Typical time for analyst validation and story creation before the request moves toward development.' },
+      { value: '11GB+', label: 'Knowledge corpus', detail: 'Engineering repositories plus documentation and shared working knowledge used by the analysis agent.' },
+      { value: '558+', label: 'Projects searchable', detail: 'Engineering project scope available for cross-project impact analysis.' },
     ],
     featured: true,
     visual: 'forecast',
