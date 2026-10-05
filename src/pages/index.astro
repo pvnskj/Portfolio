@@ -7,6 +7,33 @@ import { projectPresentation, getEvidence } from '../data/projectPresentation';
 const groups = ['All work', 'Platforms', 'AI', 'Operations', 'Finance'];
 const base = import.meta.env.BASE_URL;
 
+const aiShiftCards = [
+  {
+    title: 'Backlog → outcomes',
+    body: 'AI accelerates analysis, refinement, and dependency discovery, so less time goes into manual grooming and more into shaping the right solution.',
+  },
+  {
+    title: 'Stories → epics',
+    body: 'I can work at a broader level by connecting business intent, technical impact, dependencies, and delivery planning earlier.',
+  },
+  {
+    title: 'Velocity → time to market',
+    body: 'Sprint velocity still matters, but faster analysis, clearer scope, and earlier validation reduce the delay between idea and implementation.',
+  },
+  {
+    title: 'Fragmented knowledge → shared context',
+    body: 'AI helps connect prior decisions, documentation, technical systems, and team knowledge so stakeholders, developers, and QA work from a fuller picture.',
+  },
+  {
+    title: 'Single stream → multi-product view',
+    body: 'Cross-product impacts and dependencies are easier to surface, making sequencing and integration across product streams more practical.',
+  },
+  {
+    title: 'Coordination → customer focus',
+    body: 'With less time spent gathering information and coordinating handoffs, I can spend more time on customer needs, experience, and product outcomes.',
+  },
+];
+
 const approachCards = [
   {
     number: '01',
@@ -115,6 +142,28 @@ const approachCards = [
         <p>Understand the problem. Make the call. Validate the outcome.</p>
         <span>Swipe or scroll →</span>
       </div>
+    </section>
+
+    <section class="ai-shift" aria-labelledby="ai-shift-title">
+      <div class="ai-shift-intro">
+        <div>
+          <p class="eyebrow">How AI changed my work</p>
+          <h2 id="ai-shift-title">Less coordination overhead. More product thinking.</h2>
+        </div>
+        <p>AI has not changed my accountability as a Product Owner. It has changed how much time I can spend on the decisions that matter.</p>
+      </div>
+
+      <div class="ai-shift-grid">
+        {aiShiftCards.map((card, index) => (
+          <article class="ai-shift-card">
+            <span>{String(index + 1).padStart(2, '0')}</span>
+            <h3>{card.title}</h3>
+            <p>{card.body}</p>
+          </article>
+        ))}
+      </div>
+
+      <p class="ai-shift-signoff">Faster analysis. Better context. Shorter path from customer need to product outcome.</p>
     </section>
   </div>
 </BaseLayout>
