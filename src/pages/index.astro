@@ -6,6 +6,51 @@ import { projectPresentation, getEvidence } from '../data/projectPresentation';
 
 const groups = ['All work', 'Platforms', 'AI', 'Operations', 'Finance'];
 const base = import.meta.env.BASE_URL;
+
+const approachCards = [
+  {
+    number: '01',
+    title: 'Start with the outcome',
+    body: 'I begin with the problem, who it affects, and what success should look like before deciding what to build.',
+    stance: 'Visionary',
+    value: 'Focus',
+  },
+  {
+    number: '02',
+    title: 'Bring the right people in',
+    body: 'I work across business, design, engineering, operations, and users to uncover constraints and challenge assumptions early.',
+    stance: 'Collaborator',
+    value: 'Openness · Respect',
+  },
+  {
+    number: '03',
+    title: 'Turn ambiguity into choices',
+    body: 'I make trade-offs visible and prioritize using value, risk, effort, dependencies, and evidence.',
+    stance: 'Decision Maker',
+    value: 'Courage',
+  },
+  {
+    number: '04',
+    title: 'Validate before scaling',
+    body: 'When uncertainty is high, I prefer a pilot or smaller release that can prove the direction before committing heavily.',
+    stance: 'Experimenter',
+    value: 'Commitment',
+  },
+  {
+    number: '05',
+    title: 'Balance user and business',
+    body: 'I represent customer needs without losing sight of business outcomes, technical realities, and long-term product health.',
+    stance: 'Customer Representative',
+    value: 'Focus',
+  },
+  {
+    number: '06',
+    title: 'Align, then enable',
+    body: 'I create clarity around priorities and outcomes, then give the team room to solve the problem instead of prescribing the implementation.',
+    stance: 'Influencer',
+    value: 'Respect',
+  },
+];
 ---
 
 <BaseLayout>
@@ -44,9 +89,32 @@ const base = import.meta.env.BASE_URL;
       </div>
     </section>
 
-    <section id="approach" class="scan-approach" aria-labelledby="approach-title">
-      <div><p class="eyebrow">How I work</p><h2 id="approach-title">Technical depth.<br /> Human judgment.</h2></div>
-      <div><p>AI has changed how I think about product ownership. I use it to investigate faster and test assumptions earlier. My job is to decide what matters, make the trade-offs clear, and stay accountable for what we build.</p><p class="approach-signoff">Understand the system. Make the call. Learn from the evidence.</p></div>
+    <section id="approach" class="scan-approach approach-carousel-section" aria-labelledby="approach-title">
+      <div class="approach-intro">
+        <div>
+          <p class="eyebrow">How I work</p>
+          <h2 id="approach-title">How I approach a challenge.</h2>
+        </div>
+        <p>I use Scrum values and Product Owner stances as behaviors, not labels: create clarity, make deliberate trade-offs, validate with evidence, and keep people aligned on the outcome.</p>
+      </div>
+
+      <div class="approach-carousel" aria-label="Product ownership approach">
+        {approachCards.map((card) => (
+          <article class="approach-card">
+            <div class="approach-card-top">
+              <span>{card.number}</span>
+              <div class="approach-tags"><b>{card.stance}</b><i>{card.value}</i></div>
+            </div>
+            <h3>{card.title}</h3>
+            <p>{card.body}</p>
+          </article>
+        ))}
+      </div>
+
+      <div class="approach-footer">
+        <p>Understand the problem. Make the call. Validate the outcome.</p>
+        <span>Swipe or scroll →</span>
+      </div>
     </section>
   </div>
 </BaseLayout>
