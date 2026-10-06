@@ -5,7 +5,7 @@
   background-size:300% 200%;
   background-repeat:no-repeat;
   background-color:#09111c;
-  transform:scale(1.01);
+  transform:scale(1);
   transition:transform .35s ease;
 }
 .snip-orchestration{background-position:0 0}
