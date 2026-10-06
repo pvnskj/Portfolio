@@ -18,6 +18,12 @@ const outcomes = [
   ['18', 'Service intents in scope', 'Actual'],
   ['75K/day', 'Target order capacity', 'Projected'],
 ];
+const decisions = [
+  ['Dependencies over diagrams', 'Capabilities declare what they require and execute; the platform resolves sequence and parallelism.'],
+  ['Assess before execution', 'Decomposition, identifiers, and enrichment resolve before fulfillment begins.'],
+  ['One shared order context', 'A governed lifecycle context prevents divergent versions of the same order.'],
+  ['Configuration over customization', 'Policy moves to governed configuration while the execution model stays stable.'],
+];
 ---
 
 <main class="eomc-page shell">
@@ -66,6 +72,15 @@ const outcomes = [
     </section>
   </div>
 
+  <section class="eomc-decisions" aria-label="Key decisions">
+    <span>Judgment calls</span>
+    <div class="eomc-decision-grid">
+      {decisions.map(([title, text], i) => (
+        <article><b>{String(i + 1).padStart(2, '0')}</b><div><h3>{title}</h3><p>{text}</p></div></article>
+      ))}
+    </div>
+  </section>
+
   <a class="eomc-next" href={`${base}/work/rag-analysis-agent/`}><span>Next project</span><strong>Enterprise RAG Analysis Agent →</strong></a>
 </main>
 
@@ -101,13 +116,20 @@ const outcomes = [
   .eomc-metric strong { display: block; font-size: 1.35rem; color: #fff; }
   .eomc-metric small { font-size: .68rem; color: #8b96ad; }
   .eomc-metric em { display: block; font-style: normal; font-size: .6rem; letter-spacing: .1em; text-transform: uppercase; color: #7de8b4; margin-top: 2px; }
-  .eomc-next { display: flex; justify-content: space-between; align-items: center; margin: 22px 32px 0; padding: 16px 22px; border: 1px solid rgba(126,151,224,.16); border-radius: 14px; text-decoration: none; background: rgba(10,15,28,.5); }
-  .eomc-next span { font-size: .68rem; letter-spacing: .14em; text-transform: uppercase; color: #8b96ad; }
+  .eomc-decisions { margin: 14px 32px 0; border: 1px solid rgba(126,151,224,.16); border-radius: 16px; padding: 18px 22px; background: linear-gradient(160deg, rgba(20,28,52,.45), rgba(8,12,24,.65)); }
+  .eomc-decisions > span { font-size: .64rem; letter-spacing: .18em; text-transform: uppercase; font-weight: 800; color: #f0c987; }
+  .eomc-decision-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: 12px; }
+  .eomc-decision-grid article { display: flex; gap: 10px; }
+  .eomc-decision-grid b { font-size: .72rem; color: #f0c987; font-weight: 800; }
+  .eomc-decision-grid h3 { font-size: .82rem; color: #fff; margin: 0 0 4px; }
+  .eomc-decision-grid p { font-size: .76rem; color: #9fb0cc; line-height: 1.5; margin: 0; }
+  .eomc-next { display: flex; justify-content: space-between; align-items: center; margin: 22px 32px 0; padding: 16px 22px; border: 1px solid rgba(126,151,224,.16); border-radius: 14px; text-decoration: none; background: rgba(10,15,28,.5); }  .eomc-next span { font-size: .68rem; letter-spacing: .14em; text-transform: uppercase; color: #8b96ad; }
   .eomc-next strong { color: #fff; font-size: .95rem; }
   .eomc-next:hover { border-color: rgba(126,151,224,.4); }
   @media (max-width: 760px) {
     .eomc-grid { grid-template-columns: 1fr; }
+    .eomc-decision-grid { grid-template-columns: 1fr 1fr; }
     .eomc-bar, .eomc-hero, .eomc-grid { padding-left: 18px; padding-right: 18px; }
-    .eomc-next { margin-left: 18px; margin-right: 18px; }
+    .eomc-decisions, .eomc-next { margin-left: 18px; margin-right: 18px; }
   }
 </style>
