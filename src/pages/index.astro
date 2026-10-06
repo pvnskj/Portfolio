@@ -369,11 +369,13 @@ const metrics = [
       animation: captionCycle 12s ease infinite;
     }
 
-      .system-visual { min-height: 390px; margin-top: 30px; }
+      @media (max-width: 760px) {
+  .system-visual { min-height: 390px; margin-top: 30px; }
+}
 
-      .signal-word, .signal-core, .signal-stage::before, .signal-stage::after, .signal-caption { display: none; }
+      /* (moved into prefers-reduced-motion below) */
 
-      .signal-layer { opacity: 1; transform: none; animation: none !important; }
+      /* (moved into prefers-reduced-motion below) */
 @keyframes gatherSignal {
       0%, 31% { left: var(--x); top: var(--y); opacity: .92; transform: translate(-50%, -50%) rotate(var(--r)) scale(1); }
       38% { left: var(--x); top: var(--y); opacity: 1; transform: translate(-50%, -50%) rotate(0) scale(1.04); }
@@ -407,7 +409,7 @@ const metrics = [
   .system-visual .signal-stage::before,
   .system-visual .signal-stage::after,
   .system-visual .signal-caption { display: none; }
-  .system-visual .signal-layer { opacity: 1; transform: none; animation: none !important; }
+  .system-visual /* (moved into prefers-reduced-motion below) */
 }
 
 </style>
