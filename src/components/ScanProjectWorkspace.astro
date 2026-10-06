@@ -17,39 +17,37 @@ const isRfds = project.slug === 'rfds';
 const isCompact = isEom || isRag || isRfds;
 
 const eomCompact = {
-  problem: 'Our vendor orchestration product charged us per order, so cost grew directly with volume. We chose to build our own platform to remove that dependency, control the roadmap, and introduce intelligent orchestration.',
-  goal: 'Build an in-house orchestration platform using a DAG and workers so each order triggers only the tasks it actually needs, reducing vendor dependency while improving control, resilience, and scale.',
+  problem: 'Per-order vendor cost increased with volume and limited roadmap control.',
+  goal: 'Own the orchestration layer with a scalable, dependency-driven platform.',
   ownership: [
-    ['Business case', 'Frame the build-vs-buy opportunity around recurring order cost, control, and scale.'],
-    ['Product direction', 'Define the target experience and roadmap for intelligent orchestration.'],
-    ['Cross-team delivery', 'Align 19+ teams around shared scope, sequencing, and migration.'],
-    ['Outcome validation', 'Protect existing service behavior while proving the new model reduced mapping effort.'],
+    ['Business case', 'Build vs. buy, cost, control, scale.'],
+    ['Product direction', 'Target model and migration roadmap.'],
+    ['Cross-team delivery', '19+ teams, shared sequencing and dependencies.'],
+    ['Outcome validation', 'Protect behavior while proving the new model.'],
   ],
   priorities: [
-    ['01', 'Protect the business', 'Keep existing service behavior intact during migration.'],
-    ['02', 'Remove the dependency', 'Build the reusable orchestration foundation before adding more variation.'],
-    ['03', 'Scale what works', 'Move product change toward configuration and measurable operational control.'],
+    ['01', 'Protect the business', 'Preserve service behavior during migration.'],
+    ['02', 'Remove the dependency', 'Build the reusable orchestration foundation first.'],
+    ['03', 'Scale what works', 'Move variation toward configuration.'],
   ],
-  process: ['Business case', 'Prioritize low-risk volume', 'Pilot DAG + workers', 'Migrate & measure'],
+  process: ['Business case', 'Low-risk pilot', 'DAG + workers', 'Migrate & measure'],
   decisions: [
-    ['Build vs. buy', 'Own the orchestration capability instead of paying indefinitely per order.'],
-    ['Start where volume was high', 'Prove the new model on an order type with high throughput but lower business impact before expanding further.'],
-    ['Run only what is needed', 'Use the DAG to resolve dependencies and workers to execute only the tasks required for that order.'],
-    ['Design for recovery', 'Support validation, SLA control, retry, and reprocessing so failures do not force the entire order to restart.'],
+    ['Build vs. buy', 'Own the capability instead of paying per order.'],
+    ['Start where failure was safer', 'Prove the model before expanding.'],
+    ['Execute only what is needed', 'Dependency-driven orchestration.'],
+    ['Design for recovery', 'Validation, retry, and reprocessing built in.'],
   ],
   outcomes: [
-    ['20%', 'faster logic mapping', 'Measured proof-of-concept improvement'],
-    ['18', 'service intents', 'Existing behavior protected during migration'],
-    ['19+', 'teams aligned', 'Cross-system delivery and migration coordination'],
-    ['75K/day', 'target capacity', 'Projected scale for the event-driven model'],
+    ['20%', 'faster logic mapping', 'Measured POC'],
+    ['18', 'service intents', 'Migration scope'],
+    ['19+', 'teams aligned', 'Cross-team delivery'],
+    ['75K/day', 'target capacity', 'Projected scale'],
   ],
   benefits: [
-    'Only required tasks invoked',
-    'Fewer unnecessary downstream calls',
-    'Cross-system coordination',
-    'Validation before execution',
-    'SLA-aware processing',
-    'Retry & reprocess support',
+    'Dynamic dependency resolution',
+    'Only required tasks execute',
+    'Built-in recovery',
+    'Greater platform control',
   ],
 };
 
@@ -124,12 +122,12 @@ const rfdsCompact = {
       <div class="eom-problem-grid">
         <article class="eom-problem-card">
           <span>Business problem</span>
-          <h2>Why build our own?</h2>
+          <h2>Vendor dependency was scaling with every order.</h2>
           <p>{eomCompact.problem}</p>
         </article>
         <article class="eom-goal-card">
           <span>Product goal</span>
-          <h2>Lower cost. More control. Smarter fulfillment.</h2>
+          <h2>Own the orchestration layer.</h2>
           <p>{eomCompact.goal}</p>
         </article>
       </div>
