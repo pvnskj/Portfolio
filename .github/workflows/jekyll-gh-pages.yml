@@ -24,6 +24,18 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
+      - name: Rebuild approved project artwork
+        run: |
+          mkdir -p public/project-visuals
+          cat .assets/approved-sprite.b64.0 \
+              .assets/approved-sprite.b64.1 \
+              .assets/approved-sprite.b64.2 \
+              .assets/approved-sprite.b64.3 \
+              .assets/approved-sprite.b64.4 \
+              .assets/approved-sprite.b64.5 | tr -d '\n' | base64 --decode > public/project-visuals/approved-sprite.jpg
+          test -s public/project-visuals/approved-sprite.jpg
+          file public/project-visuals/approved-sprite.jpg
+
       - name: Build Astro site
         uses: withastro/action@v6
 
