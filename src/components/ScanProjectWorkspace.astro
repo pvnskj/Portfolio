@@ -6,7 +6,7 @@ import RagCompactCase from './RagCompactCase.astro';
 
 interface Props { project: Project; }
 const { project } = Astro.props;
-const base = import.meta.env.BASE_URL;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const view = projectPresentation[project.slug]!;
 const evidence = getEvidence(project);
 const proof = evidence[view.proofIndex]!;
