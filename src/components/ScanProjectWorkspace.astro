@@ -13,7 +13,8 @@ const proof = evidence[view.proofIndex]!;
 const next = projects[(projects.findIndex((item) => item.slug === project.slug) + 1) % projects.length]!;
 const isEom = project.slug === 'enterprise-order-management';
 const isRag = project.slug === 'rag-analysis-agent';
-const isCompact = isEom || isRag;
+const isRfds = project.slug === 'rfds';
+const isCompact = isEom || isRag || isRfds;
 
 const eomCompact = {
   problem: 'Our vendor orchestration product charged us per order, so cost grew directly with volume. We chose to build our own platform to remove that dependency, control the roadmap, and introduce intelligent orchestration.',
@@ -53,11 +54,50 @@ const eomCompact = {
 };
 
 
+const rfdsCompact = {
+  problem: 'Critical site-installation diagrams were scattered across local repositories with inconsistent versions and no dependable source of truth. Teams could not always tell whether the latest document matched what was physically installed, which slowed field preparation and contributed to repeat contractor visits and avoidable cost.',
+  goal: 'Create one governed workflow that connects site assets, engineering data, field installation, milestones, contractor completion, and payment so current site-specific information is generated from trusted enterprise data when work is actually required.',
+  ownership: [
+    ['Problem discovery', 'Identify the fragmented-document, versioning, and repeat-visit problem with engineering and field teams.'],
+    ['Product direction', 'Reframe the opportunity from document storage into a governed site-engineering and field-operations workflow.'],
+    ['Enterprise integration', 'Connect site assets and milestones with RF data, contractor installation activity, and downstream financial processing.'],
+    ['Workflow automation', 'Design the milestone-driven path from site update through generation, contractor completion, validation, and payment.'],
+  ],
+  priorities: [
+    ['01', 'Establish one source of truth', 'Solve document fragmentation and version uncertainty before layering on more automation.'],
+    ['02', 'Generate from trusted data', 'Use current enterprise asset and engineering data instead of manually maintained document copies.'],
+    ['03', 'Trigger work when needed', 'Use the site milestone as the business event that determines when an update is generated and routed.'],
+    ['04', 'Close the operational loop', 'Connect contractor completion and milestone validation to downstream payment rather than ending at document generation.'],
+  ],
+  process: ['Milestone activated', 'Pull current site + RF data', 'Generate installation package', 'Route to contractor', 'Validate completion', 'Trigger payment'],
+  outcomes: [
+    ['2–4 hrs → <30 sec', 'single-site generation', 'Measured document-generation time per individual site'],
+    ['~15 min', 'bulk processing job', 'Automated milestone-driven batch generation for sites requiring updates'],
+    ['$1.2M', 'annual cost avoidance', 'Measured production cost avoidance'],
+    ['1,000+', 'designs per month', 'Observed operating scale'],
+  ],
+  benefits: [
+    'One governed site record',
+    'Version history and current-state visibility',
+    'Milestone-driven contractor work',
+    'Engineering + field data connected',
+    'Bulk processing at network scale',
+    'Completion linked to vendor payment',
+  ],
+  decisions: [
+    ['System of record, not another repository', 'Generate and govern site-installation information from enterprise data instead of creating another document store.'],
+    ['Generate from data, not copies', 'Treat the document as an output of trusted asset, RF, milestone, and installation information rather than the primary source of truth.'],
+    ['Let the milestone drive the workflow', 'Start work when the operational lifecycle shows that a site update is required instead of relying on manual requests.'],
+    ['Connect engineering to execution', 'Keep contractor completion, site status, validation, and payment connected to the same workflow.'],
+  ],
+};
+
+
 ---
 
 <main class="scan-workspace shell" data-project={project.slug} data-tone={view.tone}>
   <nav class="scan-workspace-bar" aria-label="Project navigation">
-    <a href={`${base}#work`}>← Portfolio</a><span>◆ {isEom ? 'ORDER ORCHESTRATION' : isRag ? 'ANALYSIS AGENT' : `EPIC-${project.index}`}</span><a href={`${base}work/${next.slug}/`}>Next →</a>
+    <a href={`${base}#work`}>← Portfolio</a><span>◆ {isEom ? 'ORDER ORCHESTRATION' : isRag ? 'ANALYSIS AGENT' : isRfds ? 'FIELD OPERATIONS' : `EPIC-${project.index}`}</span><a href={`${base}work/${next.slug}/`}>Next →</a>
   </nav>
 
   <section class="scan-epic-header" aria-labelledby="project-title">
@@ -65,10 +105,10 @@ const eomCompact = {
       <div class="epic-category"><ProjectSymbol slug={project.slug} /><span>{view.group} / {view.role}</span></div>
       <h1 id="project-title">{project.title}</h1>
       <p class="epic-takeaway">{view.before} <span aria-hidden="true">→</span><span class="sr-only">to</span> <strong>{view.after}.</strong></p>
-      <p class="epic-contribution"><b>{isCompact ? 'My role' : 'My contribution'}</b>{isEom ? 'Product strategy, prioritization, orchestration roadmap, and cross-team migration.' : isRag ? 'I personally designed and built the analysis agent, integrated the knowledge sources, and introduced it into the analyst workflow.' : view.contribution}</p>
+      <p class="epic-contribution"><b>{isCompact ? 'My role' : 'My contribution'}</b>{isEom ? 'Product strategy, prioritization, orchestration roadmap, and cross-team migration.' : isRag ? 'I personally designed and built the analysis agent, integrated the knowledge sources, and introduced it into the analyst workflow.' : isRfds ? 'Problem discovery, product direction, enterprise integration, and milestone-driven field workflow automation.' : view.contribution}</p>
     </div>
     <aside class="scan-primary-proof" aria-label="Headline evidence">
-      <span class="proof-type">{proof.type}</span><strong>{proof.value}</strong><span>{proof.label}</span><p>{isEom ? 'Measured in the initial orchestration proof of concept.' : isRag ? 'Business + technical analysis compared with the prior workflow.' : view.proofNote}</p>
+      <span class="proof-type">{proof.type}</span><strong>{proof.value}</strong><span>{proof.label}</span><p>{isEom ? 'Measured in the initial orchestration proof of concept.' : isRag ? 'Business + technical analysis compared with the prior workflow.' : isRfds ? 'Measured per individual site in the automated generation workflow.' : view.proofNote}</p>
       {!isCompact && <a href="#evidence" data-open-evidence>See evidence <span aria-hidden="true">↗</span></a>}
     </aside>
   </section>
@@ -137,6 +177,62 @@ const eomCompact = {
     </section>
   ) : isRag ? (
     <RagCompactCase project={project} />
+  ) : isRfds ? (
+    <section class="eom-compact" aria-label="Site Engineering and Field Operations case study">
+      <div class="eom-problem-grid">
+        <article class="eom-problem-card">
+          <span>Business problem</span>
+          <h2>Field work was running on fragmented information.</h2>
+          <p>{rfdsCompact.problem}</p>
+        </article>
+        <article class="eom-goal-card">
+          <span>Product goal</span>
+          <h2>One governed path from site change to field completion.</h2>
+          <p>{rfdsCompact.goal}</p>
+        </article>
+      </div>
+
+      <section class="eom-compact-section" aria-labelledby="rfds-owned">
+        <div class="eom-section-head"><span>My role</span><h2 id="rfds-owned">What I owned</h2></div>
+        <div class="eom-card-row">
+          {rfdsCompact.ownership.map(([title, text]) => <article><h3>{title}</h3><p>{text}</p></article>)}
+        </div>
+      </section>
+
+      <section class="eom-compact-section" aria-labelledby="rfds-priorities">
+        <div class="eom-section-head"><span>Prioritization</span><h2 id="rfds-priorities">How I decided what came first</h2></div>
+        <div class="eom-priority-row">
+          {rfdsCompact.priorities.map(([num, title, text]) => <article><b>{num}</b><div><h3>{title}</h3><p>{text}</p></div></article>)}
+        </div>
+        <div class="eom-frameworks" aria-label="Frameworks used">
+          {project.prioritization.map((item) => <span>{item.title}</span>)}
+        </div>
+      </section>
+
+      <section class="eom-compact-section eom-process-section" aria-labelledby="rfds-process">
+        <div class="eom-section-head"><span>Process</span><h2 id="rfds-process">From site milestone to field execution</h2></div>
+        <ol class="rfds-process">
+          {rfdsCompact.process.map((step, index) => <li><span>{String(index + 1).padStart(2, '0')}</span><strong>{step}</strong></li>)}
+        </ol>
+      </section>
+
+      <section class="eom-compact-section" aria-labelledby="rfds-result">
+        <div class="eom-section-head"><span>Result</span><h2 id="rfds-result">What the workflow changed</h2></div>
+        <div class="eom-outcome-row">
+          {rfdsCompact.outcomes.map(([value, label, detail]) => <article><strong>{value}</strong><h3>{label}</h3><p>{detail}</p></article>)}
+        </div>
+        <div class="eom-benefit-strip" aria-label="Operational impact">
+          {rfdsCompact.benefits.map((item) => <span>{item}</span>)}
+        </div>
+      </section>
+
+      <section class="eom-compact-section" aria-labelledby="rfds-decisions">
+        <div class="eom-section-head"><span>Product calls</span><h2 id="rfds-decisions">Four decisions that shaped the product</h2></div>
+        <div class="eom-decision-carousel">
+          {rfdsCompact.decisions.map(([title, text]) => <article><h3>{title}</h3><p>{text}</p></article>)}
+        </div>
+      </section>
+    </section>
   ) : (
 <>
   <section class="scan-story" aria-label="Project at a glance">
