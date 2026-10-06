@@ -454,7 +454,7 @@ export const projects: Project[] = [
       },
     ],
     valueNarrative:
-      'For an individual site, document generation dropped from two to four hours to under 30 seconds. I also added milestone-driven bulk processing that can generate the required site information across qualifying sites in about 15 minutes, while the overall workflow maintains version history, supports contractor execution, and connects validated completion to downstream payment.'
+      'For an individual site, document generation dropped from two to four hours to under 30 seconds. I also added milestone-driven bulk processing that can generate the required site information across qualifying sites in about 15 minutes, while the overall workflow maintains version history, supports contractor execution, and connects validated completion to downstream payment.',
     metrics: [
       { value: '$1.2M', label: 'Measured annual cost avoidance', detail: 'Labor avoided at production rollout volume through automated RFDS generation.' },
       { value: '2–4 hrs → <30 sec', label: 'Measured single-site generation time', detail: 'Observed per individual site in the automated generation workflow.' },
