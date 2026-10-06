@@ -105,10 +105,23 @@ const rfdsCompact = {
       <p class="epic-takeaway">{view.before} <span aria-hidden="true">→</span><span class="sr-only">to</span> <strong>{view.after}.</strong></p>
       <p class="epic-contribution"><b>{isCompact ? 'My role' : 'My contribution'}</b>{isEom ? 'Product strategy, prioritization, orchestration roadmap, and cross-team migration.' : isRag ? 'I personally designed and built the analysis agent, integrated the knowledge sources, and introduced it into the analyst workflow.' : isRfds ? 'Problem discovery, product direction, enterprise integration, and milestone-driven field workflow automation.' : view.contribution}</p>
     </div>
-    <aside class="scan-primary-proof" aria-label="Headline evidence">
-      <span class="proof-type">{proof.type}</span><strong>{proof.value}</strong><span>{proof.label}</span><p>{isEom ? 'Measured in the initial orchestration proof of concept.' : isRag ? 'Business + technical analysis compared with the prior workflow.' : isRfds ? 'Measured per individual site in the automated generation workflow.' : view.proofNote}</p>
-      {!isCompact && <a href="#evidence" data-open-evidence>See evidence <span aria-hidden="true">↗</span></a>}
-    </aside>
+    {isEom ? (
+      <aside class="eom-hero-visual" aria-label="Dependency-driven orchestration visualization">
+        <div class="eom-orbit orbit-one"></div>
+        <div class="eom-orbit orbit-two"></div>
+        <div class="eom-core"><ProjectSymbol slug={project.slug} /><span>Order intent</span></div>
+        <div class="eom-node node-a"><span>01</span><strong>Decompose</strong></div>
+        <div class="eom-node node-b"><span>02</span><strong>Resolve</strong></div>
+        <div class="eom-node node-c"><span>03</span><strong>Execute</strong></div>
+        <div class="eom-node node-d"><span>04</span><strong>Recover</strong></div>
+        <div class="eom-hero-proof"><strong>20%</strong><span>faster logic mapping</span></div>
+      </aside>
+    ) : (
+      <aside class="scan-primary-proof" aria-label="Headline evidence">
+        <span class="proof-type">{proof.type}</span><strong>{proof.value}</strong><span>{proof.label}</span><p>{isRag ? 'Business + technical analysis compared with the prior workflow.' : isRfds ? 'Measured per individual site in the automated generation workflow.' : view.proofNote}</p>
+        {!isCompact && <a href="#evidence" data-open-evidence>See evidence <span aria-hidden="true">↗</span></a>}
+      </aside>
+    )}
   </section>
 
   {!isCompact && (
