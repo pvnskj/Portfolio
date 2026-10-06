@@ -483,3 +483,24 @@
   .home-ai-shift{min-height:44px}
   .home-ai-signoff{font-size:.56rem!important}
 }
+
+
+/* Compact milestone-driven field operations flow */
+.rfds-process{list-style:none;display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:0;margin:0;padding:0;border:1px solid #dce5ef;border-radius:11px;overflow:hidden;background:#fff}
+.rfds-process li{position:relative;display:grid;gap:3px;padding:12px 13px;border-right:1px solid #dce5ef}
+.rfds-process li:last-child{border-right:0}
+.rfds-process li:not(:last-child)::after{content:'→';position:absolute;right:-5px;top:50%;transform:translateY(-50%);z-index:2;color:var(--accent);background:#fff;padding:0 1px}
+.rfds-process span{color:var(--accent);font-size:.56rem;font-weight:750}
+.rfds-process strong{font-size:.67rem;line-height:1.3}
+@media(max-width:900px){
+  .rfds-process{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .rfds-process li:nth-child(3n){border-right:0}
+  .rfds-process li:nth-child(-n+3){border-bottom:1px solid #dce5ef}
+  .rfds-process li::after{display:none}
+}
+@media(max-width:700px){
+  .rfds-process{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .rfds-process li{border-right:1px solid #dce5ef!important;border-bottom:1px solid #dce5ef!important}
+  .rfds-process li:nth-child(2n){border-right:0!important}
+  .rfds-process li:nth-last-child(-n+2){border-bottom:0!important}
+}
