@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ScanProjectWorkspace from '../../components/ScanProjectWorkspace.astro';
+import EomCase from '../../components/EomCase.astro';
 import { projects, type Project } from '../../data/projects';
 
 export function getStaticPaths() {
@@ -17,5 +18,5 @@ const { project } = Astro.props;
   bareMain
   bodyClass={project.slug === 'enterprise-order-management' ? 'portfolio-dark' : ''}
 >
-  <ScanProjectWorkspace project={project} />
+  {project.slug === 'enterprise-order-management' ? <EomCase project={project} /> : <ScanProjectWorkspace project={project} />}
 </BaseLayout>
