@@ -120,12 +120,10 @@ const metrics = [
             href={`${base}/work/${project.slug}/`}
             aria-label={`Open ${project.title} case study`}
           >
-            <div class={`concept-b-project-visual visual-${project.visual}`}>
+            <div class="concept-b-project-visual">
+              <img src={`${base}/project-visuals/${project.slug === 'enterprise-order-management' ? 'eom' : project.slug === 'rag-analysis-agent' ? 'rag' : project.slug === 'build-plus' ? 'build' : project.slug === 'rfds' ? 'field' : project.slug === 'gl-coding' ? 'gl' : 'lease'}.svg`} alt="" loading="lazy" />
               <div class="concept-b-project-number">0{index + 1}</div>
               <div class="concept-b-project-symbol"><ProjectSymbol slug={project.slug} /></div>
-              <div class="concept-b-visual-shape shape-a"></div>
-              <div class="concept-b-visual-shape shape-b"></div>
-              <div class="concept-b-visual-shape shape-c"></div>
             </div>
             <div class="concept-b-project-copy">
               <span>{project.group}</span>
