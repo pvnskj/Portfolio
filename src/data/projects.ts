@@ -430,7 +430,7 @@ export const projects: Project[] = [
     ],
     flow: ['Site milestone', 'Current site + engineering data', 'Document generation', 'Contractor routing', 'Field completion', 'Validation', 'Payment trigger', 'ERP fulfillment'],
     flowCaption:
-      'The document is one output of the product. The durable capability is the governed workflow connecting site state, engineering data, milestone-driven execution, contractor completion, version history, and payment.'
+      'The document is one output of the product. The durable capability is the governed workflow connecting site state, engineering data, milestone-driven execution, contractor completion, version history, and payment.',
     increments: [
       {
         title: 'Trusted source model',
