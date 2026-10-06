@@ -1,0 +1,114 @@
+---
+import ProjectSymbol from './ProjectSymbol.astro';
+import type { Project } from '../data/projects';
+
+interface Props { project: Project; }
+const { project } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+const ownership = [
+  ['Business case', 'Build vs. buy, cost, control, scale.'],
+  ['Product direction', 'Target model and migration roadmap.'],
+  ['Cross-team delivery', '19+ teams, shared sequencing and dependencies.'],
+  ['Outcome validation', 'Protect behavior while proving the new model.'],
+];
+const priorities = [
+  ['01', 'Protect the business', 'Preserve service behavior during migration.'],
+  ['02', 'Remove the dependency', 'Build the reusable orchestration foundation first.'],
+  ['03', 'Scale what works', 'Move variation toward configuration.'],
+];
+const outcomes = [
+  ['20%', 'Faster logic mapping', 'Measured POC'],
+  ['18', 'Service intents', 'Migration scope'],
+  ['19+', 'Teams aligned', 'Cross-team delivery'],
+  ['75K/day', 'Target capacity', 'Projected scale'],
+];
+const decisions = [
+  ['Build vs. buy', 'Own the capability instead of paying per order.'],
+  ['Start where failure was safer', 'Prove the model before expanding.'],
+  ['Execute only what is needed', 'Dependency-driven orchestration.'],
+  ['Design for recovery', 'Validation, retry, and reprocessing built in.'],
+];
+---
+
+<main class="eom-page shell">
+  <nav class="eom-topbar" aria-label="Project navigation">
+    <a href={`${base}/#work`}>← Portfolio</a>
+    <span>Platform · Order orchestration</span>
+    <a href={`${base}/work/rag-analysis-agent/`}>Next →</a>
+  </nav>
+
+  <section class="eom-hero">
+    <div class="eom-hero-copy">
+      <div class="eom-category"><ProjectSymbol slug={project.slug} /><span>Enterprise platform modernization</span></div>
+      <h1>Enterprise Order Management</h1>
+      <p class="eom-hero-sub">Reducing vendor dependency through intelligent orchestration.</p>
+      <p class="eom-hero-role"><strong>My role</strong> Product strategy, prioritization, orchestration roadmap, and cross-team migration.</p>
+    </div>
+
+    <div class="eom-hero-art" aria-hidden="true">
+      <img src={`${base}/project-visuals/eom.svg`} alt="" />
+      <div class="eom-hero-metric"><strong>20%</strong><span>faster logic mapping</span></div>
+    </div>
+  </section>
+
+  <section class="eom-two-up">
+    <article>
+      <span>Business problem</span>
+      <h2>Vendor dependency was scaling with every order.</h2>
+      <p>Per-order vendor cost increased with volume and limited roadmap control.</p>
+    </article>
+    <article>
+      <span>Product goal</span>
+      <h2>Own the orchestration layer.</h2>
+      <p>Build a scalable, dependency-driven platform that the organization controls.</p>
+    </article>
+  </section>
+
+  <section class="eom-section">
+    <div class="eom-section-title"><span>My role</span><h2>What I owned</h2></div>
+    <div class="eom-grid four">
+      {ownership.map(([title,text]) => <article><h3>{title}</h3><p>{text}</p></article>)}
+    </div>
+  </section>
+
+  <section class="eom-section">
+    <div class="eom-section-title"><span>Prioritization</span><h2>How I decided what came first</h2></div>
+    <div class="eom-grid three priorities">
+      {priorities.map(([num,title,text]) => <article><b>{num}</b><h3>{title}</h3><p>{text}</p></article>)}
+    </div>
+    <div class="eom-frameworks"><span>Impact Mapping</span><span>MoSCoW</span><span>WSJF</span></div>
+  </section>
+
+  <section class="eom-section">
+    <div class="eom-section-title"><span>Process</span><h2>From constraint to product</h2></div>
+    <ol class="eom-flow">
+      <li><span>01</span><strong>Business case</strong></li>
+      <li><span>02</span><strong>Low-risk pilot</strong></li>
+      <li><span>03</span><strong>DAG + workers</strong></li>
+      <li><span>04</span><strong>Migrate & measure</strong></li>
+    </ol>
+  </section>
+
+  <section class="eom-section eom-results">
+    <div class="eom-section-title"><span>Results</span><h2>What changed</h2></div>
+    <div class="eom-grid four metrics">
+      {outcomes.map(([value,label,detail]) => <article><strong>{value}</strong><h3>{label}</h3><p>{detail}</p></article>)}
+    </div>
+    <div class="eom-impact">
+      <span>Dynamic dependency resolution</span>
+      <span>Only required tasks execute</span>
+      <span>Built-in recovery</span>
+      <span>Greater platform control</span>
+    </div>
+  </section>
+
+  <section class="eom-section">
+    <div class="eom-section-title"><span>Product calls</span><h2>Four decisions that shaped the product</h2></div>
+    <div class="eom-grid four">
+      {decisions.map(([title,text]) => <article><h3>{title}</h3><p>{text}</p></article>)}
+    </div>
+  </section>
+
+  <a class="eom-next" href={`${base}/work/rag-analysis-agent/`}><span>Next project</span><strong>Enterprise RAG Analysis Agent</strong><b>→</b></a>
+</main>
