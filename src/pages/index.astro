@@ -114,7 +114,7 @@ const approachCards = [
 
 const aiShifts = [
   ['Backlog', 'Outcomes'],
-  ['Stories', 'Epics'],
+  ['Stories', 'Product direction'],
   ['Velocity', 'Time to market'],
   ['Fragmented knowledge', 'Shared context'],
   ['Single stream', 'Multi-product view'],
@@ -124,34 +124,46 @@ const aiShifts = [
 
 <BaseLayout>
   <div class="scan-home shell portfolio-home">
-    <section class="motion-hero" aria-labelledby="portfolio-title">
+    <section class="motion-hero motion-intro" aria-labelledby="portfolio-title" data-motion-intro>
       <div class="motion-hero-grid" aria-hidden="true">
         <span></span><span></span><span></span><span></span><span></span><span></span>
       </div>
-      <div class="motion-nodes" aria-hidden="true">
-        <i class="node-a"></i><i class="node-b"></i><i class="node-c"></i><i class="node-d"></i>
-        <b class="route-a"></b><b class="route-b"></b>
+
+      <button class="motion-skip" type="button" data-skip-intro>Skip intro</button>
+
+      <div class="intro-stage" aria-hidden="true">
+        <div class="intro-scene intro-scene-one">
+          <p>Complex systems.</p>
+          <div class="intro-chaos">
+            <span>Systems</span><span>Constraints</span><span>Teams</span><span>Signals</span><span>Dependencies</span>
+          </div>
+        </div>
+
+        <div class="intro-scene intro-scene-two">
+          <p>Clarity creates direction.</p>
+          <div class="intro-path">
+            <span>Business problem</span><i></i><span>Priorities</span><i></i><span>Product direction</span><i></i><span>Outcome</span>
+          </div>
+        </div>
+
+        <div class="intro-scene intro-scene-three">
+          <p>Outcomes create proof.</p>
+          <div class="intro-proof">
+            <span><strong>20%</strong> faster mapping</span>
+            <span><strong>~10d → ~6h</strong> analysis</span>
+            <span><strong>$1.2M</strong> cost avoided</span>
+          </div>
+        </div>
       </div>
 
-      <div class="motion-hero-content">
+      <div class="motion-final">
         <p class="motion-kicker">Venkata Parimi · Senior Technical Product Owner</p>
-
-        <div class="motion-story" aria-label="Product leadership statement">
-          <span class="motion-story-line line-one">Complexity is rarely the problem.</span>
-          <span class="motion-story-line line-two">Lack of clarity is.</span>
-          <span class="motion-story-line line-three">I turn systems, constraints, and competing priorities into products that move.</span>
-          <span class="motion-story-line line-four">From ambiguity to measurable outcomes.</span>
+        <h1 id="portfolio-title">Strategy <em>×</em> Systems <em>×</em> AI <em>×</em> Execution</h1>
+        <p>I turn ambiguity, constraints, and complex systems into products with measurable outcomes.</p>
+        <div class="motion-final-actions">
+          <a href="#work">Explore product work <span aria-hidden="true">↓</span></a>
+          <span>Platforms · AI · Operations · Finance</span>
         </div>
-
-        <div class="motion-identity">
-          <h1 id="portfolio-title">Strategy <em>×</em> Systems <em>×</em> AI <em>×</em> Execution</h1>
-          <p>Enterprise platforms, AI products, operations, and financial systems.</p>
-          <a href="#work">View product work <span aria-hidden="true">↓</span></a>
-        </div>
-      </div>
-
-      <div class="motion-pipeline" aria-label="How I build products">
-        <span>Business problem</span><b>→</b><span>Priorities</span><b>→</b><span>Product direction</span><b>→</b><span>Outcome</span>
       </div>
     </section>
 
@@ -159,7 +171,7 @@ const aiShifts = [
       <div class="portfolio-section-head">
         <div>
           <p class="eyebrow">Selected product work</p>
-          <h2 id="work-title">Active work</h2>
+          <h2 id="work-title">Selected initiatives</h2>
         </div>
         <p>Six initiatives, from scale to measurable impact.</p>
       </div>
@@ -173,8 +185,8 @@ const aiShifts = [
           <div role="columnheader"><strong>Evidence</strong><span>Measured outcome</span></div>
         </div>
 
-        {boardRows.map((row) => (
-          <a class="portfolio-board-row" data-tone={row.tone} href={`${base}/work/${row.slug}/`} role="row" aria-label={`Open ${row.title} case study`}>
+        {boardRows.map((row, index) => (
+          <a class="portfolio-board-row" data-tone={row.tone} style={`--row-index:${index}`} href={`${base}/work/${row.slug}/`} role="row" aria-label={`Open ${row.title} case study`}>
             <div class="portfolio-board-initiative" role="cell">
               <ProjectSymbol slug={row.slug} />
               <span><small>{row.group}</small><strong>{row.title}</strong></span>
@@ -206,8 +218,8 @@ const aiShifts = [
       </div>
 
       <div class="home-approach-track" aria-label="Product ownership approach">
-        {approachCards.map((card) => (
-          <article class="home-approach-card">
+        {approachCards.map((card, index) => (
+          <article class="home-approach-card" style={`--card-index:${index}`}>
             <div class="home-approach-tags"><span>{card.stance}</span><i>{card.value}</i></div>
             <h3>{card.title}</h3>
             <p>{card.body}</p>
@@ -226,10 +238,10 @@ const aiShifts = [
       </div>
 
       <div class="home-ai-track" aria-label="How AI changed my product work">
-        {aiShifts.map(([before, after]) => (
-          <article class="home-ai-shift">
-            <span>{before}</span>
-            <b aria-hidden="true">→</b>
+        {aiShifts.map(([before, after], index) => (
+          <article class="home-ai-shift" style={`--shift-index:${index}`}>
+            <span class="ai-before">{before}</span>
+            <span class="ai-track" aria-hidden="true"><i></i><b>→</b></span>
             <strong>{after}</strong>
           </article>
         ))}
@@ -238,3 +250,38 @@ const aiShifts = [
     </section>
   </div>
 </BaseLayout>
+
+
+<script>
+  function bindMotionIntro() {
+    const intro = document.querySelector<HTMLElement>('[data-motion-intro]');
+    if (!intro || intro.dataset.bound === 'true') return;
+    intro.dataset.bound = 'true';
+
+    const skip = intro.querySelector<HTMLButtonElement>('[data-skip-intro]');
+    const timers: number[] = [];
+    const setStage = (stage: string) => {
+      intro.dataset.stage = stage;
+    };
+    const finish = () => {
+      timers.forEach((timer) => window.clearTimeout(timer));
+      setStage('complete');
+    };
+
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      finish();
+      return;
+    }
+
+    setStage('one');
+    timers.push(window.setTimeout(() => setStage('two'), 1800));
+    timers.push(window.setTimeout(() => setStage('three'), 3600));
+    timers.push(window.setTimeout(() => setStage('complete'), 5450));
+
+    skip?.addEventListener('click', finish, { once: true });
+    document.addEventListener('astro:before-swap', () => timers.forEach((timer) => window.clearTimeout(timer)), { once: true });
+  }
+
+  bindMotionIntro();
+  document.addEventListener('astro:page-load', bindMotionIntro);
+</script>
