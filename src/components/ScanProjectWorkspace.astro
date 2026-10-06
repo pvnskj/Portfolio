@@ -97,7 +97,7 @@ const rfdsCompact = {
 
 <main class="scan-workspace shell" data-project={project.slug} data-tone={view.tone}>
   <nav class="scan-workspace-bar" aria-label="Project navigation">
-    <a href={`${base}#work`}>← Portfolio</a><span>◆ {isEom ? 'ORDER ORCHESTRATION' : isRag ? 'ANALYSIS AGENT' : isRfds ? 'FIELD OPERATIONS' : `EPIC-${project.index}`}</span><a href={`${base}work/${next.slug}/`}>Next →</a>
+    <a href={`${base}/#work`}>← Portfolio</a><span>◆ {isEom ? 'ORDER ORCHESTRATION' : isRag ? 'ANALYSIS AGENT' : isRfds ? 'FIELD OPERATIONS' : `EPIC-${project.index}`}</span><a href={`${base}/work/${next.slug}/`}>Next →</a>
   </nav>
 
   <section class="scan-epic-header" aria-labelledby="project-title">
@@ -296,7 +296,7 @@ const rfdsCompact = {
 </>
   )}
 
-  <a class="scan-next-project" href={`${base}work/${next.slug}/`}><span>Next project</span><strong>{next.title}</strong><b aria-hidden="true">→</b></a>
+  <a class="scan-next-project" href={`${base}/work/${next.slug}/`}><span>Next project</span><strong>{next.title}</strong><b aria-hidden="true">→</b></a>
 </main>
 
 <script>
