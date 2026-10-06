@@ -132,21 +132,21 @@ export const projectPresentation: Record<string, Presentation> = {
   "rfds": {
     "group": "Operations",
     "tone": "cyan",
-    "role": "Product ownership · engineering automation",
-    "contribution": "I turned engineering judgment into testable rules, with source validation and a controlled path for urgent designs.",
-    "problem": "Manual drafting allowed stale equipment data and design-to-field mismatches.",
-    "decision": "Make the design document an output of validated engineering data and rules.",
-    "outcome": "Design generation dropped from hours to seconds; field exceptions fell below 5%.",
-    "before": "Manual drafting",
-    "after": "Validated design generation",
+    "role": "Product ownership · field operations",
+    "contribution": "I identified the fragmented site-information problem and designed the governed workflow connecting engineering data, field execution, milestones, and payment.",
+    "problem": "Critical site-installation information lived across local repositories with inconsistent versions and no dependable operational source of truth.",
+    "decision": "Generate current site information from trusted enterprise data and let the milestone drive when contractor work begins.",
+    "outcome": "Single-site generation dropped from 2–4 hours to under 30 seconds, with bulk milestone-driven processing added for network-scale updates.",
+    "before": "Fragmented site documents",
+    "after": "Milestone-driven field workflow",
     "flow": [
-      "Site & equipment data",
-      "Engineering rules",
-      "Validation",
-      "Design & diagrams"
+      "Site milestone",
+      "Trusted enterprise data",
+      "Contractor execution",
+      "Payment trigger"
     ],
     "proofIndex": 1,
-    "proofNote": "Observed workflow and system logs",
+    "proofNote": "Measured per individual site in the automated workflow",
     "evidence": [
       [
         "Measured",
@@ -154,11 +154,11 @@ export const projectPresentation: Record<string, Presentation> = {
       ],
       [
         "Measured",
-        "Design generation time"
+        "Single-site generation"
       ],
       [
-        "Measured",
-        "Design-to-field exception rate"
+        "Observed",
+        "Bulk processing"
       ],
       [
         "Observed",
