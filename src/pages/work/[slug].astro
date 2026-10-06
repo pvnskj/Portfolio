@@ -15,6 +15,7 @@ const { project } = Astro.props;
   title={`${project.title} | Venkata Parimi`}
   description={`${project.question} ${project.productGoal}`}
   bareMain
+  bodyClass={project.slug === 'enterprise-order-management' ? 'portfolio-dark' : ''}
 >
   <ScanProjectWorkspace project={project} />
 </BaseLayout>
