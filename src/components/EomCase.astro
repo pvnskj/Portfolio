@@ -1,5 +1,4 @@
 ---
-import ProjectSymbol from './ProjectSymbol.astro';
 import type { Project } from '../data/projects';
 
 interface Props { project: Project; }
@@ -12,103 +11,103 @@ const ownership = [
   ['Cross-team delivery', '19+ teams, shared sequencing and dependencies.'],
   ['Outcome validation', 'Protect behavior while proving the new model.'],
 ];
-const priorities = [
-  ['01', 'Protect the business', 'Preserve service behavior during migration.'],
-  ['02', 'Remove the dependency', 'Build the reusable orchestration foundation first.'],
-  ['03', 'Scale what works', 'Move variation toward configuration.'],
-];
+const flow = ['Business case', 'Low-risk pilot', 'DAG + workers', 'Migrate & measure'];
 const outcomes = [
-  ['20%', 'Faster logic mapping', 'Measured POC'],
-  ['18', 'Service intents', 'Migration scope'],
-  ['19+', 'Teams aligned', 'Cross-team delivery'],
-  ['75K/day', 'Target capacity', 'Projected scale'],
-];
-const decisions = [
-  ['Build vs. buy', 'Own the capability instead of paying per order.'],
-  ['Start where failure was safer', 'Prove the model before expanding.'],
-  ['Execute only what is needed', 'Dependency-driven orchestration.'],
-  ['Design for recovery', 'Validation, retry, and reprocessing built in.'],
+  ['20%', 'Faster logic mapping', 'Measured'],
+  ['19+', 'Teams coordinated', 'Actual'],
+  ['18', 'Service intents in scope', 'Actual'],
+  ['75K/day', 'Target order capacity', 'Projected'],
 ];
 ---
 
-<main class="eom-page shell">
-  <nav class="eom-topbar" aria-label="Project navigation">
+<main class="eomc-page shell">
+  <nav class="eomc-bar" aria-label="Project navigation">
     <a href={`${base}/#work`}>← Portfolio</a>
-    <span>Platform · Order orchestration</span>
+    <b>Enterprise Order Management</b>
     <a href={`${base}/work/rag-analysis-agent/`}>Next →</a>
   </nav>
 
-  <section class="eom-hero">
-    <div class="eom-hero-copy">
-      <div class="eom-category"><ProjectSymbol slug={project.slug} /><span>Enterprise platform modernization</span></div>
-      <h1>Enterprise Order Management</h1>
-      <p class="eom-hero-sub">Reducing vendor dependency through intelligent orchestration.</p>
-      <p class="eom-hero-role"><strong>My role</strong> Product strategy, prioritization, orchestration roadmap, and cross-team migration.</p>
-    </div>
+  <header class="eomc-hero">
+    <p class="eomc-kicker">Platform · Order orchestration</p>
+    <h1>Enterprise Order Management</h1>
+    <p class="eomc-takeaway">Reducing vendor dependency through <strong>intelligent orchestration</strong> — new services launch without remodeling every fulfillment path.</p>
+  </header>
 
-    <div class="eom-hero-art" aria-hidden="true">
-      <img src={`${base}/project-visuals/eom.svg`} alt="" />
-      <div class="eom-hero-metric"><strong>20%</strong><span>faster logic mapping</span></div>
-    </div>
-  </section>
-
-  <section class="eom-two-up">
-    <article>
-      <span>Business problem</span>
+  <div class="eomc-grid">
+    <section class="eomc-quad q-problem">
+      <span>Problem</span>
       <h2>Vendor dependency was scaling with every order.</h2>
-      <p>Per-order vendor cost increased with volume and limited roadmap control.</p>
-    </article>
-    <article>
-      <span>Product goal</span>
-      <h2>Own the orchestration layer.</h2>
-      <p>Build a scalable, dependency-driven platform that the organization controls.</p>
-    </article>
-  </section>
+      <p>Per-order vendor cost increased with volume and limited roadmap control. Every new plan, add-on, or service combination forced teams to revisit the fulfillment flow.</p>
+    </section>
 
-  <section class="eom-section">
-    <div class="eom-section-title"><span>My role</span><h2>What I owned</h2></div>
-    <div class="eom-grid four">
-      {ownership.map(([title,text]) => <article><h3>{title}</h3><p>{text}</p></article>)}
-    </div>
-  </section>
+    <section class="eomc-quad q-approach">
+      <span>Approach</span>
+      <h2>Dependencies over diagrams.</h2>
+      <p>Capabilities declare what they require and what they can execute; the platform resolves sequence and parallelism instead of manually redrawing every product path.</p>
+      <div class="eomc-steps">{flow.map((step) => <span>{step}</span>)}</div>
+    </section>
 
-  <section class="eom-section">
-    <div class="eom-section-title"><span>Prioritization</span><h2>How I decided what came first</h2></div>
-    <div class="eom-grid three priorities">
-      {priorities.map(([num,title,text]) => <article><b>{num}</b><h3>{title}</h3><p>{text}</p></article>)}
-    </div>
-    <div class="eom-frameworks"><span>Impact Mapping</span><span>MoSCoW</span><span>WSJF</span></div>
-  </section>
+    <section class="eomc-quad q-own">
+      <span>Ownership</span>
+      <h2>What I owned</h2>
+      <ul>
+        {ownership.map(([title, text]) => <li><strong>{title}</strong> — {text}</li>)}
+      </ul>
+    </section>
 
-  <section class="eom-section">
-    <div class="eom-section-title"><span>Process</span><h2>From constraint to product</h2></div>
-    <ol class="eom-flow">
-      <li><span>01</span><strong>Business case</strong></li>
-      <li><span>02</span><strong>Low-risk pilot</strong></li>
-      <li><span>03</span><strong>DAG + workers</strong></li>
-      <li><span>04</span><strong>Migrate & measure</strong></li>
-    </ol>
-  </section>
+    <section class="eomc-quad q-results">
+      <span>Results</span>
+      <h2>Measured outcomes</h2>
+      <div class="eomc-metrics">
+        {outcomes.map(([value, label, type]) => (
+          <div class="eomc-metric"><strong>{value}</strong><small>{label}</small><em>{type}</em></div>
+        ))}
+      </div>
+    </section>
+  </div>
 
-  <section class="eom-section eom-results">
-    <div class="eom-section-title"><span>Results</span><h2>What changed</h2></div>
-    <div class="eom-grid four metrics">
-      {outcomes.map(([value,label,detail]) => <article><strong>{value}</strong><h3>{label}</h3><p>{detail}</p></article>)}
-    </div>
-    <div class="eom-impact">
-      <span>Dynamic dependency resolution</span>
-      <span>Only required tasks execute</span>
-      <span>Built-in recovery</span>
-      <span>Greater platform control</span>
-    </div>
-  </section>
-
-  <section class="eom-section">
-    <div class="eom-section-title"><span>Product calls</span><h2>Four decisions that shaped the product</h2></div>
-    <div class="eom-grid four">
-      {decisions.map(([title,text]) => <article><h3>{title}</h3><p>{text}</p></article>)}
-    </div>
-  </section>
-
-  <a class="eom-next" href={`${base}/work/rag-analysis-agent/`}><span>Next project</span><strong>Enterprise RAG Analysis Agent</strong><b>→</b></a>
+  <a class="eomc-next" href={`${base}/work/rag-analysis-agent/`}><span>Next project</span><strong>Enterprise RAG Analysis Agent →</strong></a>
 </main>
+
+<style>
+  .eomc-page { max-width: 1200px; margin: 0 auto; padding-bottom: 48px; }
+  .eomc-bar { display: flex; justify-content: space-between; align-items: center; padding: 14px 32px; border-bottom: 1px solid rgba(126,151,224,.14); font-size: .72rem; letter-spacing: .12em; text-transform: uppercase; color: #8b96ad; }
+  .eomc-bar a { color: #8b96ad; text-decoration: none; }
+  .eomc-bar a:hover { color: #dbe4f5; }
+  .eomc-bar b { color: #c6d2ea; font-weight: 700; }
+  .eomc-hero { padding: 34px 32px 20px; }
+  .eomc-kicker { font-size: .68rem; letter-spacing: .16em; text-transform: uppercase; color: #7c8ff7; margin: 0 0 10px; font-weight: 700; }
+  .eomc-hero h1 { font-size: clamp(1.9rem, 3.4vw, 2.7rem); letter-spacing: -.02em; color: #fff; margin: 0 0 8px; }
+  .eomc-takeaway { font-size: 1.02rem; color: #9fb0cc; max-width: 660px; margin: 0; line-height: 1.55; }
+  .eomc-takeaway strong { color: #dbe4f5; }
+  .eomc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; padding: 0 32px; }
+  .eomc-quad { border: 1px solid rgba(126,151,224,.16); border-radius: 16px; padding: 20px 22px; background: linear-gradient(160deg, rgba(20,28,52,.55), rgba(8,12,24,.7)); }
+  .eomc-quad > span { font-size: .64rem; letter-spacing: .18em; text-transform: uppercase; font-weight: 800; }
+  .q-problem > span { color: #ff9d7a; }
+  .q-approach > span { color: #7cc7ff; }
+  .q-own > span { color: #b9a5ff; }
+  .q-results > span { color: #7de8b4; }
+  .eomc-quad h2 { font-size: 1.12rem; color: #fff; letter-spacing: -.01em; margin: 8px 0; }
+  .eomc-quad p { font-size: .86rem; line-height: 1.55; color: #9fb0cc; margin: 0; }
+  .eomc-quad ul { list-style: none; margin: 8px 0 0; padding: 0; }
+  .eomc-quad li { font-size: .84rem; line-height: 1.5; color: #9fb0cc; padding: 6px 0 6px 18px; position: relative; border-bottom: 1px dashed rgba(126,151,224,.1); }
+  .eomc-quad li:last-child { border-bottom: 0; }
+  .eomc-quad li::before { content: "→"; position: absolute; left: 0; color: #b9a5ff; font-size: .75rem; }
+  .eomc-quad li strong { color: #dbe4f5; font-weight: 600; }
+  .eomc-steps { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+  .eomc-steps span { font-size: .68rem; padding: 5px 10px; border: 1px solid rgba(124,199,255,.3); border-radius: 999px; color: #a8d4ff; background: rgba(76,140,255,.08); }
+  .eomc-metrics { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px; }
+  .eomc-metric { border: 1px solid rgba(125,232,180,.22); border-radius: 12px; padding: 10px 12px; background: rgba(60,200,140,.06); }
+  .eomc-metric strong { display: block; font-size: 1.35rem; color: #fff; }
+  .eomc-metric small { font-size: .68rem; color: #8b96ad; }
+  .eomc-metric em { display: block; font-style: normal; font-size: .6rem; letter-spacing: .1em; text-transform: uppercase; color: #7de8b4; margin-top: 2px; }
+  .eomc-next { display: flex; justify-content: space-between; align-items: center; margin: 22px 32px 0; padding: 16px 22px; border: 1px solid rgba(126,151,224,.16); border-radius: 14px; text-decoration: none; background: rgba(10,15,28,.5); }
+  .eomc-next span { font-size: .68rem; letter-spacing: .14em; text-transform: uppercase; color: #8b96ad; }
+  .eomc-next strong { color: #fff; font-size: .95rem; }
+  .eomc-next:hover { border-color: rgba(126,151,224,.4); }
+  @media (max-width: 760px) {
+    .eomc-grid { grid-template-columns: 1fr; }
+    .eomc-bar, .eomc-hero, .eomc-grid { padding-left: 18px; padding-right: 18px; }
+    .eomc-next { margin-left: 18px; margin-right: 18px; }
+  }
+</style>
