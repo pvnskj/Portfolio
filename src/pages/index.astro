@@ -148,7 +148,7 @@ const aiShifts = [
         </div>
 
         {boardRows.map((row) => (
-          <a class="portfolio-board-row" data-tone={row.tone} href={`${base}work/${row.slug}/`} role="row" aria-label={`Open ${row.title} case study`}>
+          <a class="portfolio-board-row" data-tone={row.tone} href={`${base}/work/${row.slug}/`} role="row" aria-label={`Open ${row.title} case study`}>
             <div class="portfolio-board-initiative" role="cell">
               <ProjectSymbol slug={row.slug} />
               <span><small>{row.group}</small><strong>{row.title}</strong></span>
