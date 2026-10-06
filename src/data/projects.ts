@@ -373,7 +373,7 @@ export const projects: Project[] = [
     productGoal:
       'Create a single operational source of truth that generates current site-installation information from trusted enterprise data, routes work when the relevant milestone is activated, supports both individual and bulk processing, and connects contractor completion to downstream payment.',
     problem:
-      'Installation diagrams were stored across individual repositories and local versions, with no reliable history and no easy way to confirm that the latest document matched what was physically installed at the site. Contractors could arrive without the right information, repeat site visits increased cost, and teams spent significant time locating and reconciling documents across a network of tens of thousands of sites.'
+      'Installation diagrams were stored across individual repositories and local versions, with no reliable history and no easy way to confirm that the latest document matched what was physically installed at the site. Contractors could arrive without the right information, repeat site visits increased cost, and teams spent significant time locating and reconciling documents across a network of tens of thousands of sites.',
     complexity: [
       'RF planning and procurement catalog data arriving from separate systems',
       'Site types, Alpha/Beta/Gamma sectors, frequency bands, radios, antennas, OVPs, placement, and cable-length rules',
