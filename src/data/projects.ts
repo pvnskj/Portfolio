@@ -363,17 +363,17 @@ export const projects: Project[] = [
   {
     index: '04',
     slug: 'rfds',
-    title: 'RFDS Automation',
-    category: 'Telecommunications · Engineering automation',
-    eyebrow: 'Engineering data product',
-    question: 'What changes when an engineering document becomes the output of a governed data system instead of the system itself?',
-    headline: 'Transforming RF design from static documents into governed engineering data and rules.',
+    title: 'Site Engineering & Field Operations Automation',
+    category: 'Field operations · Engineering workflow automation',
+    eyebrow: 'Milestone-driven field operations',
+    question: 'What happens when field execution depends on critical site information scattered across local repositories and disconnected systems?',
+    headline: 'Connecting engineering data, field execution, milestones, and payment through one governed operational workflow.',
     summary:
-      'RFDS creation depended on spreadsheets, macros, manual drafting, and distributed engineering knowledge. I reframed the problem from generating documents faster to building a governed data-and-rules product that validates source data, applies repeatable engineering decisions, generates diagrams automatically, and keeps approved design context aligned with downstream execution.',
+      'Critical site-installation diagrams were distributed across local repositories with inconsistent versions and no dependable source of truth. I identified the opportunity to turn that fragmented process into one governed workflow that uses existing enterprise site, asset, milestone, engineering, contractor, and financial data to generate current installation information, track versions, route work, validate completion, and trigger downstream payment.',
     productGoal:
-      'Turn approved RF planning and equipment data into a validated, traceable, field-ready design in seconds while allowing engineering policy to evolve through governed configuration.',
+      'Create a single operational source of truth that generates current site-installation information from trusted enterprise data, routes work when the relevant milestone is activated, supports both individual and bulk processing, and connects contractor completion to downstream payment.',
     problem:
-      'As the national footprint expanded, manual drafting created version drift, stale configurations, equipment mismatches, and rework. The scalable answer was not a faster spreadsheet; it was a rules-based engineering platform in which the RFDS PDF became one generated output of trusted underlying data.',
+      'Installation diagrams were stored across individual repositories and local versions, with no reliable history and no easy way to confirm that the latest document matched what was physically installed at the site. Contractors could arrive without the right information, repeat site visits increased cost, and teams spent significant time locating and reconciling documents across a network of tens of thousands of sites.'
     complexity: [
       'RF planning and procurement catalog data arriving from separate systems',
       'Site types, Alpha/Beta/Gamma sectors, frequency bands, radios, antennas, OVPs, placement, and cable-length rules',
@@ -428,9 +428,9 @@ export const projects: Project[] = [
           'Prioritized controls that reduced ongoing drafting time, stale configurations, field mismatches, and rework during national rollout.',
       },
     ],
-    flow: ['RF planning', 'Procurement catalog', 'Governed site model', 'Engineering rules', 'Validation gate', 'RFDS + diagrams', 'Approved configuration', 'Field / inventory execution'],
+    flow: ['Site milestone', 'Current site + engineering data', 'Document generation', 'Contractor routing', 'Field completion', 'Validation', 'Payment trigger', 'ERP fulfillment'],
     flowCaption:
-      'The RFDS is an output. The durable product is the governed engineering-data pipeline that makes every generated design repeatable, auditable, and operationally usable.',
+      'The document is one output of the product. The durable capability is the governed workflow connecting site state, engineering data, milestone-driven execution, contractor completion, version history, and payment.'
     increments: [
       {
         title: 'Trusted source model',
@@ -454,11 +454,11 @@ export const projects: Project[] = [
       },
     ],
     valueNarrative:
-      'The measured production story is materially stronger than the older approval-only metric: generation dropped from hours to seconds, design-to-field exceptions fell sharply, and the platform supported more than 1,000 designs per month while avoiding substantial annual labor cost.',
+      'For an individual site, document generation dropped from two to four hours to under 30 seconds. I also added milestone-driven bulk processing that can generate the required site information across qualifying sites in about 15 minutes, while the overall workflow maintains version history, supports contractor execution, and connects validated completion to downstream payment.'
     metrics: [
       { value: '$1.2M', label: 'Measured annual cost avoidance', detail: 'Labor avoided at production rollout volume through automated RFDS generation.' },
-      { value: '2–4 hrs → <30 sec', label: 'Measured generation time', detail: 'Observed from the automated generation workflow and system logs.' },
-      { value: '35–45% → <5%', label: 'Measured exception rate', detail: 'Reduction in rework tied to design-to-field mismatches.' },
+      { value: '2–4 hrs → <30 sec', label: 'Measured single-site generation time', detail: 'Observed per individual site in the automated generation workflow.' },
+      { value: '~15 min', label: 'Bulk processing job', detail: 'Milestone-driven batch processing for sites that require an engineering update.' },
       { value: '1,000+', label: 'Designs per month', detail: 'Observed operating scale.' },
     ],
     featured: true,
