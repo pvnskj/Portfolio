@@ -15,6 +15,12 @@ const isEom = project.slug === 'enterprise-order-management';
 const isRag = project.slug === 'rag-analysis-agent';
 const isRfds = project.slug === 'rfds';
 const isCompact = isEom || isRag || isRfds;
+const visualKey =
+  project.slug === 'enterprise-order-management' ? 'orchestration' :
+  project.slug === 'rag-analysis-agent' ? 'rag' :
+  project.slug === 'build-plus' ? 'build' :
+  project.slug === 'rfds' ? 'field' :
+  project.slug === 'gl-coding' ? 'finance' : 'lease';
 
 const eomCompact = {
   problem: 'Per-order vendor cost increased with volume and limited roadmap control.',
@@ -117,9 +123,13 @@ const rfdsCompact = {
         <div class="eom-hero-proof"><strong>20%</strong><span>faster logic mapping</span></div>
       </aside>
     ) : (
-      <aside class="scan-primary-proof" aria-label="Headline evidence">
-        <span class="proof-type">{proof.type}</span><strong>{proof.value}</strong><span>{proof.label}</span><p>{isRag ? 'Business + technical analysis compared with the prior workflow.' : isRfds ? 'Measured per individual site in the automated generation workflow.' : view.proofNote}</p>
-        {!isCompact && <a href="#evidence" data-open-evidence>See evidence <span aria-hidden="true">↗</span></a>}
+      <aside class="project-hero-visual" aria-label={`${project.title} project visual`}>
+        <div class={`approved-project-snip snip-${visualKey}`} aria-hidden="true"></div>
+        <div class="project-hero-proof">
+          <span class="proof-type">{proof.type}</span>
+          <strong>{proof.value}</strong>
+          <span>{proof.label}</span>
+        </div>
       </aside>
     )}
   </section>
