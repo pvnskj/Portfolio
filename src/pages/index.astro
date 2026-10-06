@@ -2,7 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ProjectSymbol from '../components/ProjectSymbol.astro';
 
-const base = import.meta.env.BASE_URL;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
 const boardRows = [
   {
@@ -39,7 +39,7 @@ const boardRows = [
     evidenceNote: 'Projected capacity returned',
   },
   {
-    slug: 'rfds-automation',
+    slug: 'rfds',
     title: 'Site Engineering & Field Operations',
     group: 'Operations',
     tone: 'cyan',
@@ -50,7 +50,7 @@ const boardRows = [
     evidenceNote: 'Single-site generation',
   },
   {
-    slug: 'dynamic-gl-coding',
+    slug: 'gl-coding',
     title: 'Dynamic GL Coding',
     group: 'Finance',
     tone: 'amber',
