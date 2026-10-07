@@ -12,7 +12,7 @@ export function getStaticPaths() {
 interface Props { project: Project; }
 const { project } = Astro.props;
 const next = projects[(projects.findIndex((item) => item.slug === project.slug) + 1) % projects.length]!;
-const isCompactCase = project.slug === 'rag-analysis-agent' || project.slug === 'rfds';
+const isCompactCase = project.slug === 'rag-analysis-agent' || project.slug === 'rfds' || project.slug === 'build-plus';
 ---
 
 <BaseLayout
