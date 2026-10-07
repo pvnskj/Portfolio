@@ -1,0 +1,196 @@
+---
+import type { Project } from '../data/projects';
+
+interface Props { project: Project; next: Project; }
+const { project, next } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+type CardContent = {
+  kicker: string;
+  title: string;
+  takeaway: string;
+  takeawayStrong: string;
+  problemHead: string;
+  problemText: string;
+  approachHead: string;
+  approachText: string;
+  flow: string[];
+  ownership: [string, string][];
+  outcomes: [string, string, string][];
+  decisions: [string, string][];
+};
+
+const CONTENT: Record<string, CardContent> = {
+  'rag-analysis-agent': {
+    kicker: 'AI · Analysis agent',
+    title: 'Enterprise RAG Analysis Agent',
+    takeaway: 'From ~10 days of analysis to ~6 hours with the agent — ',
+    takeawayStrong: 'grounded, cited, human-validated.',
+    problemHead: 'Analysis was consuming a sprint.',
+    problemText: 'A typical feature request consumed nearly an entire two-week sprint before development started: about six days of business analysis followed by four days of technical analysis.',
+    approachHead: 'One grounded analysis across business + code.',
+    approachText: 'Unify fragmented business and technical knowledge into one grounded, human-validated analysis workflow.',
+    flow: ['Engineering sources', 'Permission-aware retrieval', 'Grounding gate', 'Cited answer'],
+    ownership: [
+      ['Reframe the product', 'from conversational chatbot to grounded technical-analysis agent.'],
+      ['Define the grounding gate', 'require abstention when evidence is insufficient.'],
+      ['Golden-dataset CI gate', 'retrieval and answer-quality regression testing.'],
+      ['Prioritize live integrations', 'engineering-system connectors ahead of broader UI work.'],
+      ['Lead to production', 'from local Python proof of concept to production architecture.'],
+    ],
+    outcomes: [
+      ['~10 days → ~6 hrs', 'Analysis work', 'Measured'],
+      ['1–2 days', 'Story movement', 'Observed'],
+      ['11GB+', 'Knowledge corpus', 'Observed'],
+      ['558+', 'Projects searchable', 'Observed'],
+    ],
+    decisions: [
+      ['Choose accuracy over conversational speed', 'Reranking and grounding verification add latency, but production troubleshooting needs actionable evidence.'],
+      ['Use live enterprise context', 'Live integrations let the agent work against current authorized engineering state.'],
+      ['Make evaluation a release gate', 'Retrieval, chunking, or prompting changes must pass a golden set of historical failures.'],
+      ['Protect retrieval during index refresh', 'Large indexing cycles build away from active reads and swap safely when ready.'],
+    ],
+  },
+  'rfds': {
+    kicker: 'Operations · Field operations',
+    title: 'Site Engineering & Field Operations Automation',
+    takeaway: 'From fragmented site documents to ',
+    takeawayStrong: 'milestone-driven field workflow.',
+    problemHead: 'Field work was running on fragmented information.',
+    problemText: 'Installation diagrams lived across individual repositories and local versions, with no reliable history and no easy way to confirm the latest document matched the site.',
+    approachHead: 'One governed path from site change to field completion.',
+    approachText: 'Generate current site information from trusted enterprise data and let the milestone drive when contractor work begins.',
+    flow: ['Site milestone', 'Trusted enterprise data', 'Contractor execution', 'Payment trigger'],
+    ownership: [
+      ['Shift the product model', 'from document creation to governed engineering data.'],
+      ['Codify engineering judgment', 'as explicit, testable rules and metadata.'],
+      ['Enforce source validation', 'even when it added friction to user entry.'],
+      ['Keep a controlled urgent path', 'with approved equipment and validated inputs.'],
+      ['Connect to execution', 'approved design context flowing to downstream operations.'],
+    ],
+    outcomes: [
+      ['$1.2M', 'Annual cost avoidance', 'Measured'],
+      ['2–4 hrs → <30 sec', 'Single-site generation', 'Measured'],
+      ['~15 min', 'Bulk processing', 'Observed'],
+      ['1,000+', 'Designs per month', 'Observed'],
+    ],
+    decisions: [
+      ['Model knowledge as data and rules', 'Centralized site and equipment attributes with configuration-driven logic.'],
+      ['Validate at the source', 'Required fields, approved equipment, and cross-source checks prevent invalid configurations.'],
+      ['Govern flexibility', 'Strict lookups reduced freedom but kept designs consistent at rollout scale.'],
+      ['Align fulfillment with approved design', 'Shipped parts validated against the approved configuration.'],
+    ],
+  },
+};
+
+const c = CONTENT[project.slug]!;
+---
+
+<main class="cpc-page shell">
+  <nav class="cpc-bar" aria-label="Project navigation">
+    <a href={`${base}/#work`}>← Portfolio</a>
+    <b>{c.title}</b>
+    <a href={`${base}/work/${next.slug}/`}>Next →</a>
+  </nav>
+
+  <header class="cpc-hero">
+    <p class="cpc-kicker">{c.kicker}</p>
+    <h1>{c.title}</h1>
+    <p class="cpc-takeaway">{c.takeaway}<strong>{c.takeawayStrong}</strong></p>
+  </header>
+
+  <div class="cpc-grid">
+    <section class="cpc-quad q-problem">
+      <span>Problem</span>
+      <h2>{c.problemHead}</h2>
+      <p>{c.problemText}</p>
+    </section>
+
+    <section class="cpc-quad q-approach">
+      <span>Approach</span>
+      <h2>{c.approachHead}</h2>
+      <p>{c.approachText}</p>
+      <div class="cpc-steps">{c.flow.map((step) => <span>{step}</span>)}</div>
+    </section>
+
+    <section class="cpc-quad q-own">
+      <span>Ownership</span>
+      <h2>What I owned</h2>
+      <ul>
+        {c.ownership.map(([title, text]) => <li><strong>{title}</strong> — {text}</li>)}
+      </ul>
+    </section>
+
+    <section class="cpc-quad q-results">
+      <span>Results</span>
+      <h2>Measured outcomes</h2>
+      <div class="cpc-metrics">
+        {c.outcomes.map(([value, label, type]) => (
+          <div class="cpc-metric"><strong>{value}</strong><small>{label}</small><em>{type}</em></div>
+        ))}
+      </div>
+    </section>
+  </div>
+
+  <section class="cpc-decisions" aria-label="Key decisions">
+    <span>Judgment calls</span>
+    <div class="cpc-decision-grid">
+      {c.decisions.map(([title, text], i) => (
+        <article><b>{String(i + 1).padStart(2, '0')}</b><div><h3>{title}</h3><p>{text}</p></div></article>
+      ))}
+    </div>
+  </section>
+
+  <a class="cpc-next" href={`${base}/work/${next.slug}/`}><span>Next project</span><strong>{next.title} →</strong></a>
+</main>
+
+<style>
+  .cpc-page { max-width: 1200px; margin: 0 auto; padding-bottom: 48px; }
+  .cpc-bar { display: flex; justify-content: space-between; align-items: center; padding: 14px 32px; border-bottom: 1px solid rgba(126,151,224,.14); font-size: .72rem; letter-spacing: .12em; text-transform: uppercase; color: #8b96ad; }
+  .cpc-bar a { color: #8b96ad; text-decoration: none; }
+  .cpc-bar a:hover { color: #dbe4f5; }
+  .cpc-bar b { color: #c6d2ea; font-weight: 700; }
+  .cpc-hero { padding: 34px 32px 20px; }
+  .cpc-kicker { font-size: .68rem; letter-spacing: .16em; text-transform: uppercase; color: #7c8ff7; margin: 0 0 10px; font-weight: 700; }
+  .cpc-hero h1 { font-size: clamp(1.9rem, 3.4vw, 2.7rem); letter-spacing: -.02em; color: #fff; margin: 0 0 8px; }
+  .cpc-takeaway { font-size: 1.02rem; color: #9fb0cc; max-width: 660px; margin: 0; line-height: 1.55; }
+  .cpc-takeaway strong { color: #dbe4f5; }
+  .cpc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; padding: 0 32px; }
+  .cpc-quad { border: 1px solid rgba(126,151,224,.16); border-radius: 16px; padding: 20px 22px; background: linear-gradient(160deg, rgba(20,28,52,.55), rgba(8,12,24,.7)); }
+  .cpc-quad > span { font-size: .64rem; letter-spacing: .18em; text-transform: uppercase; font-weight: 800; }
+  .q-problem > span { color: #ff9d7a; }
+  .q-approach > span { color: #7cc7ff; }
+  .q-own > span { color: #b9a5ff; }
+  .q-results > span { color: #7de8b4; }
+  .cpc-quad h2 { font-size: 1.12rem; color: #fff; letter-spacing: -.01em; margin: 8px 0; }
+  .cpc-quad p { font-size: .86rem; line-height: 1.55; color: #9fb0cc; margin: 0; }
+  .cpc-quad ul { list-style: none; margin: 8px 0 0; padding: 0; }
+  .cpc-quad li { font-size: .84rem; line-height: 1.5; color: #9fb0cc; padding: 6px 0 6px 18px; position: relative; border-bottom: 1px dashed rgba(126,151,224,.1); }
+  .cpc-quad li:last-child { border-bottom: 0; }
+  .cpc-quad li::before { content: "→"; position: absolute; left: 0; color: #b9a5ff; font-size: .75rem; }
+  .cpc-quad li strong { color: #dbe4f5; font-weight: 600; }
+  .cpc-steps { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+  .cpc-steps span { font-size: .68rem; padding: 5px 10px; border: 1px solid rgba(124,199,255,.3); border-radius: 999px; color: #a8d4ff; background: rgba(76,140,255,.08); }
+  .cpc-metrics { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px; }
+  .cpc-metric { border: 1px solid rgba(125,232,180,.22); border-radius: 12px; padding: 10px 12px; background: rgba(60,200,140,.06); }
+  .cpc-metric strong { display: block; font-size: 1.35rem; color: #fff; }
+  .cpc-metric small { font-size: .68rem; color: #8b96ad; }
+  .cpc-metric em { display: block; font-style: normal; font-size: .6rem; letter-spacing: .1em; text-transform: uppercase; color: #7de8b4; margin-top: 2px; }
+  .cpc-decisions { margin: 14px 32px 0; border: 1px solid rgba(126,151,224,.16); border-radius: 16px; padding: 18px 22px; background: linear-gradient(160deg, rgba(20,28,52,.45), rgba(8,12,24,.65)); }
+  .cpc-decisions > span { font-size: .64rem; letter-spacing: .18em; text-transform: uppercase; font-weight: 800; color: #f0c987; }
+  .cpc-decision-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: 12px; }
+  .cpc-decision-grid article { display: flex; gap: 10px; }
+  .cpc-decision-grid b { font-size: .72rem; color: #f0c987; font-weight: 800; }
+  .cpc-decision-grid h3 { font-size: .82rem; color: #fff; margin: 0 0 4px; }
+  .cpc-decision-grid p { font-size: .76rem; color: #9fb0cc; line-height: 1.5; margin: 0; }
+  .cpc-next { display: flex; justify-content: space-between; align-items: center; margin: 22px 32px 0; padding: 16px 22px; border: 1px solid rgba(126,151,224,.16); border-radius: 14px; text-decoration: none; background: rgba(10,15,28,.5); }
+  .cpc-next span { font-size: .68rem; letter-spacing: .14em; text-transform: uppercase; color: #8b96ad; }
+  .cpc-next strong { color: #fff; font-size: .95rem; }
+  .cpc-next:hover { border-color: rgba(126,151,224,.4); }
+  @media (max-width: 760px) {
+    .cpc-grid { grid-template-columns: 1fr; }
+    .cpc-decision-grid { grid-template-columns: 1fr 1fr; }
+    .cpc-bar, .cpc-hero, .cpc-grid { padding-left: 18px; padding-right: 18px; }
+    .cpc-decisions, .cpc-next { margin-left: 18px; margin-right: 18px; }
+  }
+</style>

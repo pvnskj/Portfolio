@@ -2,6 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ScanProjectWorkspace from '../../components/ScanProjectWorkspace.astro';
 import EomCase from '../../components/EomCase.astro';
+import CompactProjectCase from '../../components/CompactProjectCase.astro';
 import { projects, type Project } from '../../data/projects';
 
 export function getStaticPaths() {
@@ -10,6 +11,8 @@ export function getStaticPaths() {
 
 interface Props { project: Project; }
 const { project } = Astro.props;
+const next = projects[(projects.findIndex((item) => item.slug === project.slug) + 1) % projects.length]!;
+const isCompactCase = project.slug === 'rag-analysis-agent' || project.slug === 'rfds';
 ---
 
 <BaseLayout
@@ -18,5 +21,5 @@ const { project } = Astro.props;
   bareMain
   bodyClass={project.slug === 'enterprise-order-management' ? 'portfolio-dark eom-dark' : 'portfolio-dark project-dark'}
 >
-  {project.slug === 'enterprise-order-management' ? <EomCase project={project} /> : <ScanProjectWorkspace project={project} />}
+  {project.slug === 'enterprise-order-management' ? <EomCase project={project} /> : isCompactCase ? <CompactProjectCase project={project} next={next} /> : <ScanProjectWorkspace project={project} />}
 </BaseLayout>
