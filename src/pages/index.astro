@@ -12,6 +12,8 @@ const projects = [
     group: 'Platform',
     tone: 'blue',
     summary: 'Intelligent orchestration for enterprise order flows.',
+    result: '20% faster logic mapping',
+    resultType: 'Measured',
     visual: 'orchestration',
   },
   {
@@ -20,6 +22,8 @@ const projects = [
     group: 'AI',
     tone: 'violet',
     summary: 'Grounded analysis across fragmented enterprise knowledge.',
+    result: '~10 days → ~6 hrs',
+    resultType: 'Analysis work',
     visual: 'rag',
   },
   {
@@ -28,6 +32,8 @@ const projects = [
     group: 'Operations',
     tone: 'teal',
     summary: 'Product + engineering for supply-chain operations.',
+    result: '10,040 hrs / year',
+    resultType: 'Projected benefit',
     visual: 'build',
   },
   {
@@ -36,6 +42,8 @@ const projects = [
     group: 'Operations',
     tone: 'cyan',
     summary: 'Field execution tied to governed site information.',
+    result: '$1.2M cost avoided',
+    resultType: 'Measured annually',
     visual: 'field',
   },
   {
@@ -44,6 +52,8 @@ const projects = [
     group: 'Accounting',
     tone: 'amber',
     summary: 'Configurable financial routing across business units.',
+    result: '40% faster close',
+    resultType: 'Measured',
     visual: 'finance',
   },
   {
@@ -52,6 +62,8 @@ const projects = [
     group: 'Finance',
     tone: 'rose',
     summary: 'Vendor, lease, and payment controls at scale.',
+    result: '$23.7M / month',
+    resultType: 'Rent roll governed',
     visual: 'lease',
   },
 ];
@@ -86,27 +98,62 @@ const metrics = [
         <span>From systems scale to measurable business impact.</span>
       </div>
 
-      <div class="concept-b-project-grid">
-        {projects.map((project, index) => (
-          <a
-            class="concept-b-project"
-            data-tone={project.tone}
-            href={`${base}/work/${project.slug}/`}
-            aria-label={`Open ${project.title} case study`}
-          >
-            <div class="concept-b-project-visual">
-              <div class={`approved-project-snip snip-${project.visual}`} aria-hidden="true"></div>
-              <div class="concept-b-project-number">0{index + 1}</div>
-              <div class="concept-b-project-symbol"><ProjectSymbol slug={project.slug} /></div>
+      <div class="project-reel-shell" aria-label="Featured projects carousel">
+        <div class="project-reel-fade project-reel-fade-left" aria-hidden="true"></div>
+        <div class="project-reel-fade project-reel-fade-right" aria-hidden="true"></div>
+        <div class="project-reel-viewport">
+          <div class="project-reel-track">
+            <div class="project-reel-set">
+            {projects.map((project, index) => (
+              <a
+                class="concept-b-project project-reel-card"
+                data-tone={project.tone}
+                href={`${base}/work/${project.slug}/`}
+                aria-label={`Open ${project.title} case study`}
+              >
+                <div class="concept-b-project-visual">
+                  <div class={`approved-project-snip snip-${project.visual}`} aria-hidden="true"></div>
+                  <div class="project-motion-overlay" aria-hidden="true"><span></span><span></span><span></span></div>
+                  <div class="concept-b-project-number">0{index + 1}</div>
+                  <div class="concept-b-project-symbol"><ProjectSymbol slug={project.slug} /></div>
+                </div>
+                <div class="concept-b-project-copy">
+                  <span>{project.group}</span>
+                  <h3>{project.title}</h3>
+                  <p>{project.summary}</p>
+                  <div class="project-result"><strong>{project.result}</strong><small>{project.resultType}</small></div>
+                  <b aria-hidden="true">↗</b>
+                </div>
+              </a>
+            ))}
             </div>
-            <div class="concept-b-project-copy">
-              <span>{project.group}</span>
-              <h3>{project.title}</h3>
-              <p>{project.summary}</p>
-              <b aria-hidden="true">↗</b>
+            <div class="project-reel-set project-reel-clone" aria-hidden="true">
+            {projects.map((project, index) => (
+              <a
+                class="concept-b-project project-reel-card"
+                data-tone={project.tone}
+                href={`${base}/work/${project.slug}/`}
+                aria-label={`Open ${project.title} case study`}
+              >
+                <div class="concept-b-project-visual">
+                  <div class={`approved-project-snip snip-${project.visual}`} aria-hidden="true"></div>
+                  <div class="project-motion-overlay" aria-hidden="true"><span></span><span></span><span></span></div>
+                  <div class="concept-b-project-number">0{index + 1}</div>
+                  <div class="concept-b-project-symbol"><ProjectSymbol slug={project.slug} /></div>
+                </div>
+                <div class="concept-b-project-copy">
+                  <span>{project.group}</span>
+                  <h3>{project.title}</h3>
+                  <p>{project.summary}</p>
+                  <div class="project-result"><strong>{project.result}</strong><small>{project.resultType}</small></div>
+                  <b aria-hidden="true">↗</b>
+                </div>
+              </a>
+            ))}
             </div>
-          </a>
-        ))}
+          </div>
+        </div>
+        <div class="project-reel-hint"><span>Hover to pause</span><span>Swipe on touch</span></div>
       </div>
     </section>
 
@@ -344,6 +391,60 @@ const metrics = [
   .approach-flow small{font-size:.46rem}
   .ai-approach-split{grid-template-columns:1fr;gap:6px}
   .ai-approach-split>b{display:none}
+}
+
+
+/* Animated project reel */
+.project-reel-shell{position:relative;margin-top:18px}
+.project-reel-viewport{overflow:hidden;padding:10px 2px 18px}
+.project-reel-track{display:flex;width:max-content;will-change:transform;animation:projectReel 38s linear infinite}
+.project-reel-shell:hover .project-reel-track,.project-reel-shell:focus-within .project-reel-track{animation-play-state:paused}
+.project-reel-set{display:flex;gap:18px;padding-right:18px}
+.project-reel-card{width:clamp(300px,27vw,390px);flex:0 0 auto;border-radius:24px!important;background:linear-gradient(145deg,#fff,#f6f8fb)!important;border:1px solid rgba(148,163,184,.26)!important;box-shadow:10px 14px 30px rgba(15,23,42,.08),-7px -7px 18px rgba(255,255,255,.92)!important;overflow:hidden}
+.project-reel-card:hover{transform:translateY(-6px) scale(1.01)!important;box-shadow:14px 22px 40px rgba(15,23,42,.11),-8px -8px 20px rgba(255,255,255,.96)!important;border-color:rgba(124,58,237,.26)!important}
+.project-reel-card .concept-b-project-visual{height:210px;background:#edf1f5}
+.project-reel-card .approved-project-snip{transform:scale(1.035);transition:transform .65s cubic-bezier(.2,.7,.2,1)}
+.project-reel-card:hover .approved-project-snip{transform:scale(1.08)}
+.project-reel-card .concept-b-project-copy{min-height:210px;padding:20px 20px 18px}
+.project-reel-card .concept-b-project-copy>span{font-size:11px;letter-spacing:.09em;text-transform:uppercase}
+.project-reel-card .concept-b-project-copy h3{margin:7px 34px 8px 0;font-size:21px;line-height:1.16;letter-spacing:-.03em}
+.project-reel-card .concept-b-project-copy p{max-width:32ch;font-size:14px;line-height:1.5}
+.project-reel-card .concept-b-project-copy>b{right:18px;top:18px;width:30px;height:30px;font-size:14px;background:#fff}
+.project-result{display:grid;gap:2px;margin-top:19px;padding-top:15px;border-top:1px solid #e7ebf0}
+.project-result strong{font-size:18px;line-height:1.15;color:#0f172a}
+.project-result small{font-size:11px;color:#7c3aed;font-weight:700;letter-spacing:.04em;text-transform:uppercase}
+.project-motion-overlay{position:absolute;inset:0;z-index:2;pointer-events:none;overflow:hidden}
+.project-motion-overlay span{position:absolute;width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.88);box-shadow:0 0 0 6px rgba(255,255,255,.12);opacity:.72;animation:projectSignal 5.8s ease-in-out infinite}
+.project-motion-overlay span:nth-child(1){left:18%;top:28%}
+.project-motion-overlay span:nth-child(2){left:48%;top:58%;animation-delay:-1.9s}
+.project-motion-overlay span:nth-child(3){left:76%;top:34%;animation-delay:-3.8s}
+.project-reel-fade{position:absolute;top:10px;bottom:42px;width:56px;z-index:8;pointer-events:none}
+.project-reel-fade-left{left:-2px;background:linear-gradient(90deg,#f8fafc,rgba(248,250,252,0))}
+.project-reel-fade-right{right:-2px;background:linear-gradient(270deg,#f8fafc,rgba(248,250,252,0))}
+.project-reel-hint{display:flex;justify-content:flex-end;gap:18px;color:#94a3b8;font-size:11px}
+@keyframes projectReel{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@keyframes projectSignal{0%,100%{transform:translate3d(0,0,0) scale(.82);opacity:.3}50%{transform:translate3d(18px,-14px,0) scale(1.1);opacity:.9}}
+@media(max-width:760px){
+  .project-reel-shell{margin-top:12px}
+  .project-reel-viewport{overflow-x:auto;scroll-snap-type:x mandatory;overscroll-behavior-inline:contain;margin-right:-18px;padding-right:18px;scrollbar-width:none}
+  .project-reel-viewport::-webkit-scrollbar{display:none}
+  .project-reel-track{animation:none}
+  .project-reel-set{gap:12px;padding-right:12px}
+  .project-reel-clone{display:none}
+  .project-reel-card{width:82vw;max-width:360px;display:block!important;scroll-snap-align:start;border-radius:20px!important}
+  .project-reel-card .concept-b-project-visual{height:178px;min-height:0}
+  .project-reel-card .concept-b-project-copy{min-height:190px;padding:17px}
+  .project-reel-card .concept-b-project-copy h3{font-size:18px}
+  .project-reel-card .concept-b-project-copy p{font-size:13px}
+  .project-reel-fade{display:none}
+  .project-reel-hint{justify-content:flex-start}
+  .project-reel-hint span:first-child{display:none}
+}
+@media(prefers-reduced-motion:reduce){
+  .project-reel-track{animation:none}
+  .project-motion-overlay span{animation:none}
+  .project-reel-viewport{overflow-x:auto}
+  .project-reel-clone{display:none}
 }
 
 </style>
