@@ -66,36 +66,16 @@ const metrics = [
 
 <BaseLayout bodyClass="portfolio-light">
   <div class="concept-b shell">
-    <section class="concept-b-hero" aria-labelledby="portfolio-title">
-      <div class="concept-b-hero-copy">
-        <p class="concept-b-kicker">Enterprise systems × AI × execution</p>
-        <h1 id="portfolio-title">
-          Complex systems.<br />
-          Clear direction.<br />
-          <span>Real impact.</span>
-        </h1>
-        <p class="concept-b-subhead">
-          I’m Venkata Parimi — I turn ambiguous enterprise problems into shipped products with measurable outcomes.
-        </p>
-        <div class="concept-b-actions">
-          <a class="concept-b-primary" href="#work">Explore my work <span aria-hidden="true">→</span></a>
-          <a class="concept-b-secondary" href="#approach">How I work</a>
-        </div>
-
-        <div class="concept-b-metrics" aria-label="Portfolio highlights">
-          {metrics.map(([value, label]) => (
-            <div><strong>{value}</strong><span>{label}</span></div>
-          ))}
-        </div>
-      </div>
-
-      <div class="concept-b-visual" aria-hidden="true">
-        <figure class="hero-film">
-          <video class="hero-film-video" src={`${base}/videos/hero-tell-us.mp4`} poster={`${base}/videos/hero-tell-us-poster.jpg`} autoplay muted loop playsinline preload="metadata" aria-label="Tell Us About Yourself: a 60-second animated short on how I turn ambiguous problems into shipped products"></video>
-          <figcaption>Tell Us About Yourself — a 60-second short</figcaption>
-        </figure>
-      </div>
+    <section class="film-hero" aria-labelledby="film-title">
+      <p class="film-kicker">Tell Us About Yourself</p>
+      <h1 id="film-title" class="film-title">Hi, I go by Jordan.</h1>
+      <figure class="film-block">
+        <video class="film-block-video" src={`${base}/videos/hero-tell-us.mp4`} poster={`${base}/videos/hero-tell-us-poster.jpg`} autoplay muted loop playsinline preload="metadata" aria-label="Tell Us About Yourself: a 60-second animated short on how I turn ambiguous problems into shipped products"></video>
+      </figure>
+      <p class="film-sub">A 60-second short on how I turn ambiguous enterprise problems into shipped products with measurable outcomes.</p>
     </section>
+
+
 
     <section id="work" class="concept-b-work" aria-labelledby="work-title">
       <div class="concept-b-section-head">
@@ -130,43 +110,6 @@ const metrics = [
       </div>
     </section>
 
-    <section id="approach" class="concept-b-bottom-grid approach-grid" aria-label="Product leadership approach">
-      <article class="concept-b-panel approach-panel approach-panel-method">
-        <div class="concept-b-panel-icon" aria-hidden="true">◎</div>
-        <div class="approach-panel-copy">
-          <p class="concept-b-panel-kicker">How I work</p>
-          <h2>Frame the problem. Prioritize the trade-offs. Prove the outcome.</h2>
-          <p class="approach-summary">I turn ambiguous requests into a clear decision path before delivery starts.</p>
-          <div class="approach-flow" aria-label="Product approach">
-            <div><span>01</span><strong>Frame</strong><small>Problem · users · constraints</small></div>
-            <b aria-hidden="true">→</b>
-            <div><span>02</span><strong>Prioritize</strong><small>Value · risk · dependencies</small></div>
-            <b aria-hidden="true">→</b>
-            <div><span>03</span><strong>Prove</strong><small>Ship · measure · scale</small></div>
-          </div>
-        </div>
-      </article>
-
-      <article class="concept-b-panel concept-b-panel-ai approach-panel approach-panel-ai">
-        <div class="concept-b-panel-icon" aria-hidden="true">✦</div>
-        <div class="approach-panel-copy">
-          <p class="concept-b-panel-kicker">How AI changed my approach</p>
-          <h2>AI compresses the analysis. I keep the judgment.</h2>
-          <p class="approach-summary">AI helps me get to evidence faster. Product direction, trade-offs, and accountability stay with me.</p>
-          <div class="ai-approach-split">
-            <div class="ai-approach-side">
-              <span>AI accelerates</span>
-              <strong>Research · synthesize · compare · surface gaps</strong>
-            </div>
-            <b aria-hidden="true">→</b>
-            <div class="ai-approach-side ai-approach-human">
-              <span>I decide</span>
-              <strong>Priority · trade-offs · direction · success</strong>
-            </div>
-          </div>
-        </div>
-      </article>
-    </section>
   </div>
 </BaseLayout>
 
