@@ -18,12 +18,14 @@ type CardContent = {
   ownership: [string, string][];
   outcomes: [string, string, string][];
   decisions: [string, string][];
+  storyVideo?: string;
 };
 
 const CONTENT: Record<string, CardContent> = {
   'rag-analysis-agent': {
     kicker: 'AI · Analysis agent',
     title: 'Enterprise RAG Analysis Agent',
+    storyVideo: 'videos/rag-groom.mp4',
     takeaway: 'From ~10 days of analysis to ~6 hours with the agent — ',
     takeawayStrong: 'grounded, cited, human-validated.',
     problemHead: 'Analysis was consuming a sprint.',
@@ -214,11 +216,15 @@ const c = CONTENT[project.slug]!;
     <section class="cpc-quad q-results">
       <span>Results</span>
       <h2>Measured outcomes</h2>
+      {c.storyVideo ? (
+        <video class="cpc-story-video" src={`${base}/${c.storyVideo}`} autoplay muted loop playsinline preload="metadata" aria-label="Animated story: from knowledge maze to GROOM, ending with measured outcomes"></video>
+      ) : (
       <div class="cpc-metrics">
         {c.outcomes.map(([value, label, type]) => (
           <div class="cpc-metric"><strong>{value}</strong><small>{label}</small><em>{type}</em></div>
         ))}
       </div>
+      )}
     </section>
   </div>
 
@@ -262,6 +268,7 @@ const c = CONTENT[project.slug]!;
   .cpc-steps { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
   .cpc-steps span { font-size: .68rem; padding: 5px 10px; border: 1px solid #bfdbfe; border-radius: 999px; color: #1d4ed8; background: #eff6ff; }
   .cpc-metrics { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px; }
+  .cpc-story-video { width: 100%; border-radius: 12px; margin-top: 10px; display: block; background: #0f172a; }
   .cpc-metric { border: 1px solid #a7f3d0; border-radius: 12px; padding: 10px 12px; background: #f0fdf4; }
   .cpc-metric strong { display: block; font-size: 1.35rem; color: #0f172a; }
   .cpc-metric small { font-size: .68rem; color: #64748b; }
@@ -284,3 +291,14 @@ const c = CONTENT[project.slug]!;
     .cpc-decisions, .cpc-next { margin-left: 18px; margin-right: 18px; }
   }
 </style>
+
+<script>
+  // Pause the story video for visitors who prefer reduced motion.
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    document.querySelectorAll('video.cpc-story-video').forEach((v) => {
+      v.removeAttribute('autoplay');
+      const vid = v as HTMLVideoElement;
+      vid.pause();
+    });
+  }
+</script>
