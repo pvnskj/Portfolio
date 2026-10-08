@@ -36,7 +36,7 @@ jobs:
           test -s public/project-visuals/approved-sprite.jpg
           file public/project-visuals/approved-sprite.jpg
 
-      - name: Rebuild RAG story video
+      - name: Rebuild story videos
         run: |
           mkdir -p public/videos
           cat .assets/rag-groom.b64.00 \
@@ -52,8 +52,61 @@ jobs:
               .assets/rag-groom.b64.10 \
               .assets/rag-groom.b64.11 \
               .assets/rag-groom.b64.12 | tr -d '\n' | base64 --decode > public/videos/rag-groom.mp4
-          test -s public/videos/rag-groom.mp4
-          file public/videos/rag-groom.mp4
+          cat .assets/eom-story.b64.00 \
+              .assets/eom-story.b64.01 \
+              .assets/eom-story.b64.02 \
+              .assets/eom-story.b64.03 \
+              .assets/eom-story.b64.04 \
+              .assets/eom-story.b64.05 \
+              .assets/eom-story.b64.06 \
+              .assets/eom-story.b64.07 \
+              .assets/eom-story.b64.08 \
+              .assets/eom-story.b64.09 \
+              .assets/eom-story.b64.10 \
+              .assets/eom-story.b64.11 \
+              .assets/eom-story.b64.12 \
+              .assets/eom-story.b64.13 \
+              .assets/eom-story.b64.14 | tr -d '\n' | base64 --decode > public/videos/eom-story.mp4
+          cat .assets/buildplus-story.b64.00 \
+              .assets/buildplus-story.b64.01 \
+              .assets/buildplus-story.b64.02 \
+              .assets/buildplus-story.b64.03 \
+              .assets/buildplus-story.b64.04 \
+              .assets/buildplus-story.b64.05 \
+              .assets/buildplus-story.b64.06 \
+              .assets/buildplus-story.b64.07 \
+              .assets/buildplus-story.b64.08 \
+              .assets/buildplus-story.b64.09 \
+              .assets/buildplus-story.b64.10 \
+              .assets/buildplus-story.b64.11 \
+              .assets/buildplus-story.b64.12 \
+              .assets/buildplus-story.b64.13 | tr -d '\n' | base64 --decode > public/videos/buildplus-story.mp4
+          cat .assets/rfds-story.b64.00 \
+              .assets/rfds-story.b64.01 \
+              .assets/rfds-story.b64.02 \
+              .assets/rfds-story.b64.03 \
+              .assets/rfds-story.b64.04 \
+              .assets/rfds-story.b64.05 \
+              .assets/rfds-story.b64.06 \
+              .assets/rfds-story.b64.07 | tr -d '\n' | base64 --decode > public/videos/rfds-story.mp4
+          cat .assets/gl-story.b64.00 \
+              .assets/gl-story.b64.01 \
+              .assets/gl-story.b64.02 \
+              .assets/gl-story.b64.03 \
+              .assets/gl-story.b64.04 \
+              .assets/gl-story.b64.05 \
+              .assets/gl-story.b64.06 \
+              .assets/gl-story.b64.07 \
+              .assets/gl-story.b64.08 \
+              .assets/gl-story.b64.09 | tr -d '\n' | base64 --decode > public/videos/gl-story.mp4
+          cat .assets/lease-story.b64.00 \
+              .assets/lease-story.b64.01 \
+              .assets/lease-story.b64.02 \
+              .assets/lease-story.b64.03 \
+              .assets/lease-story.b64.04 \
+              .assets/lease-story.b64.05 \
+              .assets/lease-story.b64.06 | tr -d '\n' | base64 --decode > public/videos/lease-story.mp4
+          for f in public/videos/*.mp4; do test -s "$f"; file "$f"; done
 
       - name: Build Astro site
         uses: withastro/action@v6
