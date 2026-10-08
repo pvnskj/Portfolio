@@ -16,3 +16,4 @@
 .snip-lease{background-position:100% 100%}
 body.portfolio-dark .concept-b-project-visual{position:relative;overflow:hidden}
 body.portfolio-dark .concept-b-project:hover .approved-project-snip{transform:scale(1.045)}
+body.portfolio-light .approved-project-snip{background-color:#eef2f7}
