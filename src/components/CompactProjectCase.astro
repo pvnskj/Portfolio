@@ -54,6 +54,7 @@ const CONTENT: Record<string, CardContent> = {
     ],
   },
   'build-plus': {
+    storyVideo: 'videos/buildplus-story.mp4',
     kicker: 'Operations · Supply chain',
     title: 'Build Plus',
     takeaway: 'Deliberate trade-offs won the FCC deadline — ',
@@ -84,6 +85,7 @@ const CONTENT: Record<string, CardContent> = {
     ],
   },
   'gl-coding': {
+    storyVideo: 'videos/gl-story.mp4',
     kicker: 'Finance · Configurable policy',
     title: 'Dynamic GL Coding',
     takeaway: 'Close is 40% faster with fewer reviews and less manual work \u2014 ',
@@ -114,6 +116,7 @@ const CONTENT: Record<string, CardContent> = {
     ],
   },
   'lease-vendor-management': {
+    storyVideo: 'videos/lease-story.mp4',
     kicker: 'Real estate · Financial controls',
     title: 'Lease & Vendor Management',
     takeaway: '$23.7M in monthly rent, governed — ',
@@ -144,6 +147,7 @@ const CONTENT: Record<string, CardContent> = {
     ],
   },
   'rfds': {
+    storyVideo: 'videos/rfds-story.mp4',
     kicker: 'Operations · Field operations',
     title: 'Site Engineering & Field Operations Automation',
     takeaway: 'From fragmented site documents to ',
@@ -217,7 +221,7 @@ const c = CONTENT[project.slug]!;
       <span>Results</span>
       <h2>Measured outcomes</h2>
       {c.storyVideo ? (
-        <video class="cpc-story-video" src={`${base}/${c.storyVideo}`} autoplay muted loop playsinline preload="metadata" aria-label="Animated story: from knowledge maze to GROOM, ending with measured outcomes"></video>
+        <video class="cpc-story-video" src={`${base}/${c.storyVideo}`} autoplay muted loop playsinline preload="metadata" aria-label="Animated story: from problem to solution, ending with measured outcomes"></video>
       ) : (
       <div class="cpc-metrics">
         {c.outcomes.map(([value, label, type]) => (

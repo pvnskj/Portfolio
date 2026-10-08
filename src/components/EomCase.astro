@@ -18,6 +18,7 @@ const outcomes = [
   ['18', 'Service intents in scope', 'Actual'],
   ['75K/day', 'Target order capacity', 'Projected'],
 ];
+const storyVideo = 'videos/eom-story.mp4';
 const decisions = [
   ['Dependencies over diagrams', 'Capabilities declare what they require and execute; the platform resolves sequence and parallelism.'],
   ['Assess before execution', 'Decomposition, identifiers, and enrichment resolve before fulfillment begins.'],
@@ -64,11 +65,7 @@ const decisions = [
     <section class="eomc-quad q-results">
       <span>Results</span>
       <h2>Measured outcomes</h2>
-      <div class="eomc-metrics">
-        {outcomes.map(([value, label, type]) => (
-          <div class="eomc-metric"><strong>{value}</strong><small>{label}</small><em>{type}</em></div>
-        ))}
-      </div>
+      <video class="eomc-story-video" src={`${base}/${storyVideo}`} autoplay muted loop playsinline preload="metadata" aria-label="Animated story: from rebuild treadmill to orchestration, ending with measured outcomes"></video>
     </section>
   </div>
 
@@ -112,6 +109,7 @@ const decisions = [
   .eomc-steps { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
   .eomc-steps span { font-size: .68rem; padding: 5px 10px; border: 1px solid #bfdbfe; border-radius: 999px; color: #1d4ed8; background: #eff6ff; }
   .eomc-metrics { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px; }
+  .eomc-story-video { width: 100%; border-radius: 12px; margin-top: 10px; display: block; background: #0f172a; }
   .eomc-metric { border: 1px solid #a7f3d0; border-radius: 12px; padding: 10px 12px; background: #f0fdf4; }
   .eomc-metric strong { display: block; font-size: 1.35rem; color: #0f172a; }
   .eomc-metric small { font-size: .68rem; color: #64748b; }
@@ -133,3 +131,13 @@ const decisions = [
     .eomc-decisions, .eomc-next { margin-left: 18px; margin-right: 18px; }
   }
 </style>
+
+<script>
+  // Pause the story video for visitors who prefer reduced motion.
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    document.querySelectorAll('video.eomc-story-video').forEach((v) => {
+      v.removeAttribute('autoplay');
+      (v as HTMLVideoElement).pause();
+    });
+  }
+</script>
