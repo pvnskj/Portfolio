@@ -36,6 +36,25 @@ jobs:
           test -s public/project-visuals/approved-sprite.jpg
           file public/project-visuals/approved-sprite.jpg
 
+      - name: Rebuild RAG story video
+        run: |
+          mkdir -p public/videos
+          cat .assets/rag-groom.b64.00 \
+              .assets/rag-groom.b64.01 \
+              .assets/rag-groom.b64.02 \
+              .assets/rag-groom.b64.03 \
+              .assets/rag-groom.b64.04 \
+              .assets/rag-groom.b64.05 \
+              .assets/rag-groom.b64.06 \
+              .assets/rag-groom.b64.07 \
+              .assets/rag-groom.b64.08 \
+              .assets/rag-groom.b64.09 \
+              .assets/rag-groom.b64.10 \
+              .assets/rag-groom.b64.11 \
+              .assets/rag-groom.b64.12 | tr -d '\n' | base64 --decode > public/videos/rag-groom.mp4
+          test -s public/videos/rag-groom.mp4
+          file public/videos/rag-groom.mp4
+
       - name: Build Astro site
         uses: withastro/action@v6
 
