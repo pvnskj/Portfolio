@@ -4,6 +4,8 @@
 body.portfolio-light {
   background: #f8fafc;
   color: #0f172a;
+  /* wider container for ultrawide screens (approved 1600px) */
+  --shell: min(1600px, calc(100vw - 48px));
 }
 
 /* ambient decor: soften */
