@@ -20,7 +20,7 @@ const isCompactCase = project.slug === 'rag-analysis-agent' || project.slug === 
   title={`${project.title} | Venkata Parimi`}
   description={`${project.question} ${project.productGoal}`}
   bareMain
-  bodyClass={project.slug === 'enterprise-order-management' ? 'portfolio-dark eom-dark' : 'portfolio-dark project-dark'}
+  bodyClass="portfolio-light"
 >
   {project.slug === 'enterprise-order-management' ? <EomCase project={project} /> : isCompactCase ? <CompactProjectCase project={project} prev={prev} next={next} /> : <ScanProjectWorkspace project={project} />}
 </BaseLayout>
